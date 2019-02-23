@@ -1,0 +1,44 @@
+<mat-toolbar class='toolbar'>
+    <span style="color:white">MAGANAGUMA</span>
+  
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+  
+    
+</mat-toolbar>
+
+<div class="example-container">
+    <h2 class="form-signin-heading" style='text-align: center; margin-top: 1%'>Register</h2>
+  <mat-form-field>
+    <input matInput placeholder="Full Name">
+    <mat-icon matSuffix>person</mat-icon>
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="Enter your email" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      <mat-icon matSuffix>email</mat-icon>
+  </mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <span matPrefix>+94 &nbsp;</span>
+      <input type="tel" matInput placeholder="Telephone">
+      <mat-icon matSuffix>phone</mat-icon>
+  </mat-form-field>
+    
+    
+
+  <mat-form-field style='margin-bottom: 2%'>
+    <mat-select placeholder="User Category">
+      <mat-option value="option1">Option1</mat-option>
+      <mat-option value="option2">Option2</mat-option>
+      <mat-option value="option3">Option3</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <div class="example-button-row">
+      <button mat-raised-button color="primary" routerLink=".">Register</button>
+  </div>
+</div>
+

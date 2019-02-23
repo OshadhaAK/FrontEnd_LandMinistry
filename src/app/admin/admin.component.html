@@ -1,0 +1,53 @@
+<mat-toolbar class='toolbar'>
+  <span style="color:white">MAGANAGUMA</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  
+</mat-toolbar>
+<mat-tab-group dynamicHeight class="tabgroup">
+  <mat-tab label="Pending Accounts">
+    <div>
+      <mat-card class="card">
+        <mat-slide-toggle
+        class="example-margin"
+        [color]="color"
+        [checked]="checked"
+        [disabled]="disabled"
+        style="float: right;">
+      
+      </mat-slide-toggle>
+        Simple card</mat-card>
+    </div>
+  </mat-tab>
+  <mat-tab label="Approved Accounts">
+    <div>
+        <mat-card  class="card">Simple card</mat-card>
+    </div>
+  </mat-tab>
+  <mat-tab label="Search">
+    <div>
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Project Name">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Division">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Lot no.">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Land">
+        </mat-form-field>
+        <div class="example-button-row">
+            <button mat-raised-button color="primary" routerLink="." >Search<mat-icon matSuffix>search</mat-icon></button>
+            <button mat-mini-fab color="primary" routerLink="/createproject" style="float: right; margin-right: 2%; margin-bottom: 2%;"><mat-icon matSuffix>addition</mat-icon></button>
+        </div>
+        
+    </form>
+    </div>
+  </mat-tab>
+</mat-tab-group>
+

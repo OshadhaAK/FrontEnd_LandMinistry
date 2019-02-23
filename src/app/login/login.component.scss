@@ -1,0 +1,29 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px; 
+    border-style: solid; 
+    border-width: 3px;
+    border-color: #1aa3ff;
+    width: 30%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .example-container > * {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+  }
+  input{
+  margin: 2%;
+  width: 20%;
+  
+}
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
