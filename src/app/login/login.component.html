@@ -6,9 +6,10 @@
     <mat-icon matSuffix>email</mat-icon>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
+  <label style='text-align:left;'><a routerLink="/forgotpassword">Forgot Password?</a></label>
   <div class="example-button-row" style="text-align: center">
     
     <button mat-raised-button color="primary" routerLink="/search">Login</button>

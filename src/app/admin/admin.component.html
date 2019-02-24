@@ -3,13 +3,29 @@
 
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
+  <div style="color: white">
+      {{userID}}
+      <mat-select style="width: 5%; color: white">
+  
+              <mat-option>
+                      <a routerLink="./" style="font-size: 80%; text-decoration: none">Profile</a>
+              </mat-option>
+              <mat-option >
+                  <a routerLink="/changepassword" style="font-size: 80%; text-decoration: none">Change Password</a> 
+              </mat-option>
+              <mat-option >
+                  <a routerLink="./" style="font-size: 80%; text-decoration: none">Logout</a>
+              </mat-option>
+              
+          </mat-select>
+</div>
 
   
 </mat-toolbar>
 <mat-tab-group dynamicHeight class="tabgroup">
   <mat-tab label="Pending Accounts">
     <div>
-      <mat-card class="card">
+      <mat-card class="card" *ngFor="let member of detailSet;let q = index">
         <mat-slide-toggle
         class="example-margin"
         [color]="color"
@@ -18,7 +34,11 @@
         style="float: right;">
       
       </mat-slide-toggle>
-        Simple card</mat-card>
+        Name:{{member.name}}<br>
+        Email:{{member.email}}<br>
+        Password:{{member.password}}<br>
+        Tel_no.:{{member.telno}}<br>
+      </mat-card>
     </div>
   </mat-tab>
   <mat-tab label="Approved Accounts">
