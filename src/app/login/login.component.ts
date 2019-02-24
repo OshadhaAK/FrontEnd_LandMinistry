@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { DataService } from '../data.service';
+import { LoginServiceService } from "../../services/login-service.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
              '';
    }
    
-  constructor(private dataService:DataService) {
+  constructor(private dataService:DataService,private loginServeice : LoginServiceService) {
     
    }
    
