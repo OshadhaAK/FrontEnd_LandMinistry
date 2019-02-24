@@ -9,7 +9,10 @@ export class AdminComponent implements OnInit {
   color = 'primary';
   checked = false;
   disabled = false;
-  constructor() { }
+  userID : any;
+  constructor() {
+    this.userID = "Oshadha";
+   }
 
   ngOnInit() {
   }
