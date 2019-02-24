@@ -11,7 +11,8 @@ import * as Material from "@angular/material";
     Material.MatTabsModule,
     Material.MatCardModule,
     Material.MatSlideToggleModule,
-    Material.MatDividerModule
+    Material.MatDividerModule,
+    Material.MatAutocompleteModule
   ],
   exports : [
     Material.MatToolbarModule,
@@ -20,7 +21,8 @@ import * as Material from "@angular/material";
     Material.MatTabsModule,
     Material.MatCardModule,
     Material.MatSlideToggleModule,
-    Material.MatDividerModule
+    Material.MatDividerModule,
+    Material.MatAutocompleteModule
   ],
   
 })
