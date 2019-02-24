@@ -15,6 +15,9 @@ import { SearchComponent } from './search/search.component';
 import { DataService } from './data.service';
 import { AdminComponent } from './admin/admin.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { CreateProjectComponent } from './create-project/create-project.componen
     RegisterComponent,
     SearchComponent,
     AdminComponent,
-    CreateProjectComponent
+    CreateProjectComponent,
+    ForgotpasswordComponent,
+    ResetpasswordComponent,
+    ChangepasswordComponent
   ],
   imports: [
     BrowserModule,
