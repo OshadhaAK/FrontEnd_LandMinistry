@@ -26,14 +26,7 @@
 </mat-toolbar>
 <form class="example-form">
     <mat-form-field class="example-full-width">
-            <input matInput placeholder="Project Name"  [matAutocomplete]="auto" [formControl]="projectCtrl">
-            <mat-autocomplete #auto="matAutocomplete">
-                <mat-option *ngFor="let project of filteredProjects | async" [value]="project.name">
-                
-                <span>{{project.name}}</span> |
-                
-                </mat-option>
-            </mat-autocomplete>
+        <input matInput placeholder="Project Name">
     </mat-form-field>
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Division">
