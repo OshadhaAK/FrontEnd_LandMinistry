@@ -25,15 +25,16 @@ export class LoginServiceService {
     return this.http.post(`${this.url}/getUser`,params);
   }
   
-  createUser(email : string ,telephone : number ,name :string ,category:string,user_type:string){
+  createUser(email : string ,telephone : number ,name :string ,password: string ,category:string,user_type:string){
     const params ={
       email:email,
       telephone : telephone,
       name:name,
+      password:password,
       category : category,
       user_type : user_type
     };
-    return this.http.post(`${this.url}/createUser`,params);
+    return this.http.post(`${this.url}/user/createUser`,params);
   }
 
   approveUser(uid : string){
