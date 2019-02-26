@@ -13,12 +13,14 @@ import { from } from 'rxjs';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { DataService } from './data.service';
+import { LoginServiceService } from "../services/login-service.service";
 import { AdminComponent } from './admin/admin.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,8 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
     CreateProjectComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
-    ChangepasswordComponent
+    ChangepasswordComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -42,9 +45,10 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
   ],
-  providers: [DataService],
+  providers: [DataService,LoginServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
