@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { DataService } from '../data.service';
 import { LoginServiceService } from "../../services/login-service.service";
+import { CanActivate , Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -16,7 +17,7 @@ export class RegisterComponent implements OnInit {
   telno: number;
   category: string;
   user_type:string;
-  constructor(private loginServeice : LoginServiceService) { }
+  constructor(private loginServeice : LoginServiceService, private router: Router) { }
   
 
   getErrorMessage() {
@@ -29,6 +30,7 @@ export class RegisterComponent implements OnInit {
   submit(){
     this.loginServeice.createUser(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type).subscribe((data:any)=> {
       alert('Sussecfully Registered!')
+      this.router.navigate(['/login']);
     });
   }
 }

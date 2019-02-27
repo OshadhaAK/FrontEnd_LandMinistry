@@ -13,7 +13,9 @@ export class AdminComponent implements OnInit {
   userID : any;
   constructor(private loginServeice : LoginServiceService) {
     this.userID = sessionStorage.getItem('email');
-    
+    this.loginServeice.getPendingUsers().subscribe((data:any)=>{
+        console.log(data);
+    });
    }
   
   ngOnInit() {

@@ -36,17 +36,22 @@ export class LoginComponent implements OnInit {
     }
     else{
       this.loginServeice.login(this.emailaddress,this.password).subscribe((data: any) => {
-        //console.log(data.success);
+        console.log("usertype",data.msg[2].user_type[0],data.msg[2].approvalStatus[0]);
         if(data.success){
           this.userID = data.msg[0];
           this.accessToken = data.msg[1];
           sessionStorage.setItem('accessToken',this.accessToken);
           sessionStorage.setItem('userID',this.userID);
           console.log(sessionStorage.getItem('userID'));
-          this.router.navigateByUrl('/search');
+          if(data.msg[2].user_type[0]==="user" && data.msg[2].approvalStatus[0]==="approved"){
+            this.router.navigateByUrl('/search');
+          }
+          else if(data.msg[2].user_type[0]==="admin" && data.msg[2].approvalStatus[0]==="approved"){
+            this.router.navigateByUrl('/admin');
+          }       
           console.log(data);
         }else{
-          //alert('wrong login credentials!');
+          alert('wrong login credentials!');
           this.router.navigate(['/login']);
         }
       },(error: any) => {
