@@ -9,6 +9,14 @@ export class LoginServiceService {
 
   constructor(private http: HttpClient) { }
 
+  public getAuthToken() {
+    return sessionStorage.getItem('accessToken');
+  }
+
+  public getUID() {
+    return sessionStorage.getItem('userID');
+  }
+
   /* POST FUNCTIONS */
   login(email : string, password : string){
     const params ={
