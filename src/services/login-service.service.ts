@@ -109,6 +109,11 @@ export class LoginServiceService {
     return this.http.get(`${this.url}/user/pendingUsers`);
   }
   
-
+  verifyToken(token:string){
+    const params ={
+      token : token
+    };
+    return this.http.post(`${this.url}/reset/resetPasswordValidate`,params);
+  }
 
 }
