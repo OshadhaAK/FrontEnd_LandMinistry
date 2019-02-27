@@ -25,15 +25,16 @@ export class LoginServiceService {
     return this.http.post(`${this.url}/getUser`,params);
   }
   
-  createUser(email : string ,telephone : number ,name :string ,category:string,user_type:string){
+  createUser(email : string ,telephone : number ,name :string ,password: string ,category:string,user_type:string){
     const params ={
       email:email,
       telephone : telephone,
       name:name,
+      password:password,
       category : category,
       user_type : user_type
     };
-    return this.http.post(`${this.url}/createUser`,params);
+    return this.http.post(`${this.url}/user/createUser`,params);
   }
 
   approveUser(uid : string){
@@ -71,14 +72,14 @@ export class LoginServiceService {
       oldPassword : oldPassword,
       newPassword : newPassword
     };
-    return this.http.post(`${this.url}/changePassword`,params);
+    return this.http.post(`${this.url}/login/changePassword`,params);
   }
 
   forgotPassword(email : string){
     const params ={
       email : email
     };
-    return this.http.post(`${this.url}/auth/forgot_password`,params);
+    return this.http.post(`${this.url}/reset/forgotPassword`,params);
   }
 
   resetPassword(token:string,newPassword:string,verifyPassword:string){
@@ -87,7 +88,7 @@ export class LoginServiceService {
       newPassword : newPassword,
       verifyPassword : verifyPassword
     };
-    return this.http.post(`${this.url}/auth/reset_password`,params);
+    return this.http.post(`${this.url}/reset/resetPassword`,params);
   }
 
   /* GET FUNCTIONS */
@@ -105,7 +106,7 @@ export class LoginServiceService {
   }
 
   getPendingUsers(){
-    return this.http.get(`${this.url}/pendingUsers`);
+    return this.http.get(`${this.url}/user/pendingUsers`);
   }
   
 

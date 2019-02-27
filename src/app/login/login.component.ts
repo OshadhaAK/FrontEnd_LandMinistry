@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { DataService } from '../data.service';
 import { LoginServiceService } from "../../services/login-service.service";
-
+import { CanActivate , Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,6 +10,10 @@ import { LoginServiceService } from "../../services/login-service.service";
 })
 export class LoginComponent implements OnInit {
   hide = true;
+  emailaddress: string;
+  password: string;
+  accessToken: string;
+  userID: string ;
   email = new FormControl('', [Validators.required, Validators.email]);
 
    getErrorMessage() {
@@ -18,11 +22,42 @@ export class LoginComponent implements OnInit {
              '';
    }
    
-  constructor(private dataService:DataService,private loginServeice : LoginServiceService) {
+  constructor(private loginServeice : LoginServiceService, private router: Router) {
     
    }
    
   ngOnInit() {
   }
-
+  submit(){
+    sessionStorage.setItem('email',this.emailaddress);
+    if (this.emailaddress === '' || this.emailaddress === null || this.password === '' || this.password == null) {
+      alert('please enter login credentials');
+      this.router.navigate(['/login']);
+    }
+    else{
+      this.loginServeice.login(this.emailaddress,this.password).subscribe((data: any) => {
+        //console.log(data.success);
+        if(data.success){
+          this.userID = data.msg[0];
+          this.accessToken = data.msg[1];
+          sessionStorage.setItem('accessToken',this.accessToken);
+          sessionStorage.setItem('userID',this.userID);
+          console.log(sessionStorage.getItem('userID'));
+          this.router.navigateByUrl('/search');
+          console.log(data);
+        }else{
+          //alert('wrong login credentials!');
+          this.router.navigate(['/login']);
+        }
+      },(error: any) => {
+          alert('Wrong login credentials!');
+          this.router.navigate(['/login']);
+      });
+    }
+    
+    
+    
+  }
+  
+  
 }

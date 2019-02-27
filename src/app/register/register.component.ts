@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { DataService } from '../data.service';
-
+import { LoginServiceService } from "../../services/login-service.service";
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,7 +10,13 @@ import { DataService } from '../data.service';
 export class RegisterComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
-  constructor(private dataService:DataService) { }
+  name: string;
+  emailaddress: string;
+  password: string;
+  telno: number;
+  category: string;
+  user_type:string;
+  constructor(private loginServeice : LoginServiceService) { }
   
 
   getErrorMessage() {
@@ -20,5 +26,9 @@ export class RegisterComponent implements OnInit {
   }
   ngOnInit() {
   }
-
+  submit(){
+    this.loginServeice.createUser(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type).subscribe((data:any)=> {
+      alert('Sussecfully Registered!')
+    });
+  }
 }
