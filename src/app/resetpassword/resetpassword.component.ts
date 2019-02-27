@@ -14,15 +14,14 @@ export class ResetpasswordComponent implements OnInit {
   verifyPassword:string;
   userID: any;
   constructor(private loginServeice : LoginServiceService,private activatedRoute: ActivatedRoute, private router: Router) { 
-    console.log(this.token);
+    //console.log("sfvsf",this.token);
     this.userID = sessionStorage.getItem('email');
     this.activatedRoute.queryParams.subscribe(params => {
       let token = params['token'];
-      console.log(token); 
+      console.log("paramtoken",token); 
       this.loginServeice.verifyToken(token).subscribe((data:any)=>{
           if(data.success){
             alert("change your password");
-            this.router.navigateByUrl('/resetpassword');
             this.token=token;
           }else{
             alert("Not autherized to change the password");
