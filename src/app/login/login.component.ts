@@ -29,14 +29,21 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   submit(){
+    sessionStorage.setItem('email',this.emailaddress);
     if (this.emailaddress === '' || this.emailaddress === null || this.password === '' || this.password == null) {
       alert('please enter login credentials');
       this.router.navigate(['/login']);
     }
     else{
       this.loginServeice.login(this.emailaddress,this.password).subscribe((data: any) => {
-        console.log(data);
-        if(data){
+        //console.log(data.success);
+        if(data.success){
+          this.userID = data.msg[0];
+          this.accessToken = data.msg[1];
+          sessionStorage.setItem('accessToken',this.accessToken);
+          sessionStorage.setItem('userID',this.userID);
+          console.log(sessionStorage.getItem('userID'));
+          this.router.navigateByUrl('/search');
           console.log(data);
         }else{
           //alert('wrong login credentials!');

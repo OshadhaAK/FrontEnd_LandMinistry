@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { LoginServiceService } from "../../services/login-service.service";
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -11,10 +11,12 @@ export class AdminComponent implements OnInit {
   disabled = false;
   detailSet: any;
   userID : any;
-  constructor() {
+  constructor(private loginServeice : LoginServiceService) {
     this.userID = "Oshadha";
-    this.detailSet = [{name:"oshadha",email:"asdav@adv",password:"e32e",telno:54656},{name:"Kalana",email:"dfed@ree",password:"54tr",telno:546436},{name:"Heshan",email:"vcvf@riue",password:"b67r",telno:5576}];
-    
+    this.loginServeice.getPendingUsers().subscribe((item)=>{
+      this.detailSet = item;
+      console.log(this.detailSet)
+    });
    }
   
   ngOnInit() {

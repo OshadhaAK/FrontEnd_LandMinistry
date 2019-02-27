@@ -72,14 +72,14 @@ export class LoginServiceService {
       oldPassword : oldPassword,
       newPassword : newPassword
     };
-    return this.http.post(`${this.url}/changePassword`,params);
+    return this.http.post(`${this.url}/login/changePassword`,params);
   }
 
   forgotPassword(email : string){
     const params ={
       email : email
     };
-    return this.http.post(`${this.url}/auth/forgot_password`,params);
+    return this.http.post(`${this.url}/reset/forgotPassword`,params);
   }
 
   resetPassword(token:string,newPassword:string,verifyPassword:string){
@@ -88,7 +88,7 @@ export class LoginServiceService {
       newPassword : newPassword,
       verifyPassword : verifyPassword
     };
-    return this.http.post(`${this.url}/auth/reset_password`,params);
+    return this.http.post(`${this.url}/reset/resetPassword`,params);
   }
 
   /* GET FUNCTIONS */
@@ -106,7 +106,7 @@ export class LoginServiceService {
   }
 
   getPendingUsers(){
-    return this.http.get(`${this.url}/pendingUsers`);
+    return this.http.get(`${this.url}/user/pendingUsers`);
   }
   
 

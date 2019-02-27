@@ -11,11 +11,9 @@ import {map, startWith} from 'rxjs/operators';
   
 })
 export class SearchComponent implements OnInit {
-  
-
   userID : any;
   constructor(private dataService:DataService) { 
-    this.userID = "Oshadha";
+    this.userID = sessionStorage.getItem('email');
     
   }
   
