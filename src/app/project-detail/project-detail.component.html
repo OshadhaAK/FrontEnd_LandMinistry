@@ -43,6 +43,19 @@
         <input id="fileInput" type="file" class="ng-hide">
         
       
-      </mat-card>
+    </mat-card>
+    <mat-card class="card" *ngIf='state==="select"'>
+        select where to go:
+        <mat-form-field>
+            <mat-select [(value)]="selected" placeholder="Where to go next?">
+              
+              <mat-option value="option1">Option 1</mat-option>
+              <mat-option value="option2">Option 2</mat-option>
+              <mat-option value="option3">Option 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+        
+      
+    </mat-card>
     
 </div>
