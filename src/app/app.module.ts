@@ -20,6 +20,10 @@ import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.compone
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
+
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import { TokenInterceptor } from '../services/tokenInterceptor';
+
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 @NgModule({
@@ -50,7 +54,14 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     MatIconModule,
     HttpClientModule
   ],
-  providers: [DataService,LoginServiceService],
+  providers: [DataService,
+    LoginServiceService,
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
