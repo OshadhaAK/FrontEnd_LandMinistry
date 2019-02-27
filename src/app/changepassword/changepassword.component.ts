@@ -14,16 +14,18 @@ export class ChangepasswordComponent implements OnInit {
   emailaddress: string;
   oldPassword:string;
   newPassword:string;
-  uid:string;
+  userID:string;
   email = new FormControl('', [Validators.required, Validators.email]);
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :
         this.email.hasError('email') ? 'Not a valid email' :
             '';
   }
-  constructor(private loginServeice : LoginServiceService) { }
+  constructor(private loginServeice : LoginServiceService) {
+    this.userID = sessionStorage.getItem('email');
+   }
   submit(){
-    this.loginServeice.changePassword(this.uid,this.emailaddress,this.oldPassword,this.newPassword).subscribe((data:any)=>{
+    this.loginServeice.changePassword(this.userID,this.emailaddress,this.oldPassword,this.newPassword).subscribe((data:any)=>{
       console.log(data);
     });
   }

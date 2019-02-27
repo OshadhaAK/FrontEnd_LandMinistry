@@ -1,0 +1,48 @@
+<mat-toolbar class='toolbar'>
+    <span style="color:white">MAGANAGUMA</span>
+  
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+    
+    <div style="color: white">
+            {{userID}}
+            <mat-select style="width: 5%; color: white">
+        
+                    <mat-option>
+                            <a routerLink="./" style="font-size: 80%; text-decoration: none">Profile</a>
+                    </mat-option>
+                    <mat-option >
+                        <a routerLink="/changepassword" style="font-size: 80%; text-decoration: none">Change Password</a> 
+                    </mat-option>
+                    <mat-option >
+                        <a routerLink="./" style="font-size: 80%; text-decoration: none">Logout</a>
+                    </mat-option>
+                    
+                </mat-select>
+    </div>
+    
+     
+    
+</mat-toolbar>
+
+<div class="container">
+    <mat-card class="card" *ngIf='state==="switch"'>
+      <mat-slide-toggle
+      class="example-margin"
+      [color]="color"
+      [checked]="checked"
+      [disabled]="disabled"
+      style="float: right;">
+    
+    </mat-slide-toggle>
+      
+    details:
+    </mat-card>
+    <mat-card class="card" *ngIf='state==="fileupload"'>
+        details:
+        <input id="fileInput" type="file" class="ng-hide">
+        
+      
+      </mat-card>
+    
+</div>
