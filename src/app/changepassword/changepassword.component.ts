@@ -23,6 +23,8 @@ export class ChangepasswordComponent implements OnInit {
   }
   constructor(private loginServeice : LoginServiceService) {
     this.userID = sessionStorage.getItem('email');
+    this.userID = this.loginServeice.getUID();
+    console.log("uid",this.userID);
    }
   submit(){
     this.loginServeice.changePassword(this.userID,this.emailaddress,this.oldPassword,this.newPassword).subscribe((data:any)=>{
