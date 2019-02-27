@@ -21,6 +21,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     ForgotpasswordComponent,
     ResetpasswordComponent,
     ChangepasswordComponent,
+    ProjectDetailComponent,
     
   ],
   imports: [

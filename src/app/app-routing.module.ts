@@ -8,6 +8,7 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
   import { from } from 'rxjs';
 const routes: Routes = [
   {
@@ -38,6 +39,9 @@ const routes: Routes = [
   },{
     path: 'changepassword',
     component: ChangepasswordComponent
+  },{
+    path: 'projectdetails',
+    component: ProjectDetailComponent
   }
 ];
 

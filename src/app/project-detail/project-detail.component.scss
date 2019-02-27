@@ -1,0 +1,30 @@
+.example-fill-remaining-space {
+    /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+    
+  }
+  .toolbar{
+    background-color: #2196f3;
+
+  }
+  .toolbar .dropdown{
+    font-size: 0.58;
+  }
+  .card{
+    margin-top: 2%;
+    
+  }
+  .container{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 10px; 
+    border-style: solid; 
+    border-width: 3px;
+    border-color: #1aa3ff;
+    width: 30%;
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto; 
+  }
