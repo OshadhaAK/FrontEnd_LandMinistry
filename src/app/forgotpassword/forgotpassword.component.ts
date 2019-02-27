@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import { DataService } from '../data.service';
 import { LoginServiceService } from "../../services/login-service.service";
-import { CanActivate , Router } from '@angular/router';
+import { ActivatedRoute, Params , Router } from '@angular/router';
 @Component({
   selector: 'app-forgotpassword',
   templateUrl: './forgotpassword.component.html',
@@ -19,20 +19,36 @@ export class ForgotpasswordComponent implements OnInit {
          this.email.hasError('email') ? 'Not a valid email' :
              '';
    }
-  constructor(private loginServeice : LoginServiceService, private router: Router) { 
-
+  constructor(private loginServeice : LoginServiceService, private router: Router,private activatedRoute: ActivatedRoute) { 
+    
+    
   }
   
   ngOnInit() {
   }
-  submit(){
-    if(this.emailaddress === null || this.emailaddress === 'undefined' ){
-      console.log(this.emailaddress);
-      alert('please enter login credentials');
-      this.router.navigate(['/forgotpassword ']);
+  submit(){    
+    if(this.emailaddress === null || this.emailaddress === '' || this.emailaddress=== undefined ){
+      
+      alert('please enter your email address');
+      this.router.navigate(['/forgotpassword']);
     }
     else{
-      console.log('asd',this.emailaddress);
+      sessionStorage.setItem('email',this.emailaddress);
+      this.loginServeice.forgotPassword(this.emailaddress).subscribe((data:any)=>{
+        if(data.success){
+          alert("Verify your email");
+        }
+        else{
+          alert("Unauthorized access!");
+          this.router.navigate(['/forgotpassword']);
+        }
+        
+      },(error: any) => {
+        alert('Unauthorized access!');
+        this.router.navigate(['/forgotpassword']);
+    });
+
+      
     }
     
   }
