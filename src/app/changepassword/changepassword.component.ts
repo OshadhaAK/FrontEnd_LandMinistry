@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from "../../services/login-service.service";
 import {FormControl, Validators} from '@angular/forms';
-
+import { CanActivate , Router } from '@angular/router';
 @Component({
   selector: 'app-changepassword',
   templateUrl: './changepassword.component.html',
@@ -21,7 +21,7 @@ export class ChangepasswordComponent implements OnInit {
         this.email.hasError('email') ? 'Not a valid email' :
             '';
   }
-  constructor(private loginServeice : LoginServiceService) {
+  constructor(private loginServeice : LoginServiceService, private router: Router) {
     this.userID = sessionStorage.getItem('email');
     this.userID = this.loginServeice.getUID();
     console.log("uid",this.userID);
@@ -33,5 +33,9 @@ export class ChangepasswordComponent implements OnInit {
   }
   ngOnInit() {
   }
-
+  logout(){
+    sessionStorage.clear();
+    console.log("erase session",sessionStorage.getItem('email'));
+    this.router.navigate(['/login']);
+  }
 }
