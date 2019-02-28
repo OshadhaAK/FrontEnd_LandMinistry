@@ -49,7 +49,9 @@ export class LoginServiceService {
     const params ={
       uid : uid
     };
-    return this.http.post(`${this.url}/approveUser`,params);
+    console.log(params);
+    return this.http.post(`${this.url}/user/approveUser`,params);
+  
   }
 
   rejectUser(uid : string){
@@ -106,7 +108,7 @@ export class LoginServiceService {
   }
 
   getApprovedUsers(){
-    return this.http.get(`${this.url}/approvedUsers`);
+    return this.http.get(`${this.url}/user/approvedUsers`);
   }
 
   getRejectedUsers(){

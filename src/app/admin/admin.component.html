@@ -25,25 +25,31 @@
 <mat-tab-group dynamicHeight class="tabgroup">
   <mat-tab label="Pending Accounts">
     <div>
-      <mat-card class="card" *ngFor="let member of detailSet">
-        <mat-slide-toggle
-        class="example-margin"
-        [color]="color"
-        [checked]="checked"
-        [disabled]="disabled"
-        style="float: right;">
-      
-      </mat-slide-toggle>
+      <mat-card class="card" *ngFor="let member of detailSet; let i = index" >
+        
         Name:{{member.name}}<br>
         Email:{{member.email}}<br>
         Password:{{member.password}}<br>
         Tel_no.:{{member.telno}}<br>
+        Approval Status:{{member.approvalStatus}}<br>
+        <div class="example-button-row" style="text-align: right;">
+    
+          <button mat-raised-button color="primary" (click)="approve(i)">Approve</button>
+          
+        </div>
+        
       </mat-card>
     </div>
   </mat-tab>
   <mat-tab label="Approved Accounts">
     <div>
-        <mat-card  class="card">Simple card</mat-card>
+        <mat-card  class="card" *ngFor="let member of approvelist">
+          Name:{{member.name}}<br>
+          Email:{{member.email}}<br>
+          Password:{{member.password}}<br>
+          Tel_no.:{{member.telno}}<br>
+          Approval Status:{{member.approvalStatus}}
+        </mat-card>
     </div>
   </mat-tab>
   <mat-tab label="Search">
