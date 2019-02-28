@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { DataService } from './data.service';
 import { LoginServiceService } from "../services/login-service.service";
+import { FileService } from './services/file.service';
 import { AdminComponent } from './admin/admin.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
@@ -54,7 +55,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     MatIconModule,
     HttpClientModule
   ],
-  providers: [DataService,
+  providers: [DataService,FileService,
     LoginServiceService,
     {
     provide: HTTP_INTERCEPTORS,

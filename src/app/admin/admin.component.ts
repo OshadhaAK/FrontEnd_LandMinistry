@@ -19,11 +19,11 @@ export class AdminComponent implements OnInit {
     this.userID = sessionStorage.getItem('email');
     this.loginServeice.getPendingUsers().subscribe((data:any)=>{
       this.detailSet = data.msg;
-        console.log(data);
+        //console.log(data);
     });
     this.loginServeice.getApprovedUsers().subscribe((data:any)=>{
       this.approvelist = data.msg;
-      console.log(data);
+      //console.log(data);
     });
     console.log("token",this.loginServeice.getAuthToken());
    }

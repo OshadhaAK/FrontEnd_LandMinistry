@@ -24,20 +24,20 @@
      
     
 </mat-toolbar>
-<form class="example-form">
+<div class="example-container">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Project Name">
+    <input matInput placeholder="Project Name" [(ngModel)] = 'projectName'>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Division">
+      <input matInput placeholder="Division" [(ngModel)] = 'division'>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Lot no.">
+      <input matInput placeholder="Lot no." [(ngModel)] = 'lotID'>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Land">
+      <input matInput placeholder="Land User" [(ngModel)] = 'landUser'>
   </mat-form-field>
   <div class="example-button-row">
-      <button mat-raised-button color="primary" routerLink="." ><mat-icon matSuffix>add</mat-icon>Create</button>
+      <button mat-raised-button color="primary" (click)="create()" ><mat-icon matSuffix>add</mat-icon>Create</button>
   </div>
-</form>
+</div>

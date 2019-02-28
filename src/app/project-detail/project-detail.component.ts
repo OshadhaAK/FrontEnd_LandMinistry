@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CanActivate , Router } from '@angular/router';
+import { FileService } from '../services/file.service';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -8,8 +9,12 @@ import { CanActivate , Router } from '@angular/router';
 export class ProjectDetailComponent implements OnInit {
   state = "switch";
   userID : any;
-  constructor(private router: Router) {
+  projectID: any;
+  constructor(private router: Router, private fileService: FileService) {
     this.userID = sessionStorage.getItem('email');
+    this.fileService.getProjectFiles(this.projectID).subscribe((data:any)=>{
+      console.log("project files")
+    });
    }
   
   ngOnInit() {

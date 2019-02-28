@@ -24,20 +24,27 @@
      
     
 </mat-toolbar>
-<form class="example-form">
+<div class="example-container">
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Project Name">
+        <input matInput placeholder="Project Name" [(ngModel)] = 'projectName'>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Division">
+        <input matInput placeholder="Division" [(ngModel)] = 'division'>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Lot no.">
+        <input matInput placeholder="Lot ID" [(ngModel)] = 'lotID'>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Land">
+        <input matInput placeholder="Land User" [(ngModel)] = 'landUser'>
+    </mat-form-field>
+    <mat-form-field style='margin-bottom: 2%'>
+        <mat-select placeholder="Send To(Next State)" [(ngModel)] = 'state'>
+          <mat-option value="option1">Option1</mat-option>
+          <mat-option value="Declaration of Sec. 5">Declaration of Sec. 5</mat-option>
+          <mat-option value="option3">Option3</mat-option>
+        </mat-select>
     </mat-form-field>
     <div class="example-button-row">
-        <button mat-raised-button color="primary" routerLink="." >Search<mat-icon matSuffix>search</mat-icon></button>
+        <button mat-raised-button color="primary" (click)='search()' >Search<mat-icon matSuffix>search</mat-icon></button>
     </div>
-</form>
+</div>
