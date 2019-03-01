@@ -36,7 +36,9 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   approve(i: any){
-    this.loginServeice.approveUser(this.detailSet[i].uid);
+    this.loginServeice.approveUser(this.detailSet[i].uid).subscribe((data:any)=>{
+      console.log(data);
+    });
     console.log("approve user");
   }
 }

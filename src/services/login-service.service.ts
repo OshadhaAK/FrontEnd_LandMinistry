@@ -30,7 +30,7 @@ export class LoginServiceService {
     const params ={
       uid : uid
     };
-    return this.http.post(`${this.url}/getUser`,params);
+    return this.http.post(`${this.url}/user/getUser`,params);
   }
   
   createUser(email : string ,telephone : number ,name :string ,password: string ,category:string,user_type:string){
@@ -50,7 +50,9 @@ export class LoginServiceService {
       uid : uid
     };
     console.log(params);
-    return this.http.post(`${this.url}/user/approveUser`,params);
+    var val  = this.http.post(`${this.url}/user/approveUser`,params);
+    console.log(val);
+    return val;
   
   }
 
@@ -58,14 +60,14 @@ export class LoginServiceService {
     const params ={
       uid : uid
     };
-    return this.http.post(`${this.url}/rejectUser`,params);
+    return this.http.post(`${this.url}/user/rejectUser`,params);
   }
 
   deleteUser(uid : string){
       const params ={
         uid : uid
       };
-      return this.http.post(`${this.url}/deleteUser`,params);
+      return this.http.post(`${this.url}/user/deleteUser`,params);
   }
 
   verifyUser(token : string){
@@ -104,7 +106,7 @@ export class LoginServiceService {
   /* GET FUNCTIONS */
 
   getAllUsers(){
-    return this.http.get(`${this.url}/allUsers`);
+    return this.http.get(`${this.url}/user/allUsers`);
   }
 
   getApprovedUsers(){
@@ -112,7 +114,7 @@ export class LoginServiceService {
   }
 
   getRejectedUsers(){
-    return this.http.get(`${this.url}/rejectedUsers`);
+    return this.http.get(`${this.url}/user/rejectedUsers`);
   }
 
   getPendingUsers(){
