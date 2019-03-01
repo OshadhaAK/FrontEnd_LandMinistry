@@ -24,20 +24,31 @@
 </mat-toolbar>
 <mat-tab-group dynamicHeight class="tabgroup">
   <mat-tab label="Pending Accounts">
-    <div>
-      <mat-card class="card" *ngFor="let member of detailSet; let i = index" >
-        
-        Name:{{member.name}}<br>
-        Email:{{member.email}}<br>
-        Password:{{member.password}}<br>
-        Tel_no.:{{member.telno}}<br>
-        Approval Status:{{member.approvalStatus}}<br>
-        <div class="example-button-row" style="text-align: right;">
+    <div >
+      <mat-card class="card"  *ngFor="let member of detailSet; let i = index"style=" display: flex;">
+        <div class="example-button-row" style="align-content: left; width:80%">
     
-          <button mat-raised-button color="primary" (click)="approve(i)">Approve</button>
+          Name: {{member.name}}<br>
+          Email: {{member.email}}<br>
+          Password: {{member.password}}<br>
+          Tel_no.: {{member.telno}}<br>
+          Approval Status: {{member.approvalStatus}}<br>
           
         </div>
         
+        
+        <div class="example-button-row" style="margin-top: 6%; display:flex">
+    
+          <button mat-raised-button color="primary" (click)="approve(i)">Approve</button>
+          
+          
+        </div>
+        <div class="example-button-row" style="margin-top: 6%;margin-left: 2%; display:flex">
+    
+          <button mat-raised-button color="primary">Reject</button>
+          
+          
+        </div>
       </mat-card>
     </div>
   </mat-tab>

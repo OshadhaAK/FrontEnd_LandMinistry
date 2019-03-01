@@ -11,7 +11,7 @@ export class CreateProjectComponent implements OnInit {
   division:string;
   lotID:any;
   landUser:any;
-  mainProjectName = "";
+  mainProjectName = "test";
   userID:any;
   constructor(private dataService: DataService,private router: Router) { 
     this.userID = sessionStorage.getItem('email');
@@ -31,6 +31,7 @@ export class CreateProjectComponent implements OnInit {
     }
     else{
       this.dataService.createProject(this.projectName,this.division,this.landUser,this.lotID,this.mainProjectName).subscribe((data:any)=>{
+        console.log(data)
         alert("Project Created Successfully!")
         this.router.navigate(['/createproject']);
       },(error: any) => {
