@@ -30,21 +30,16 @@
     
           Name: {{member.name}}<br>
           Email: {{member.email}}<br>
-          Password: {{member.password}}<br>
           Tel_no.: {{member.telno}}<br>
-          Approval Status: {{member.approvalStatus}}<br>
           
         </div>
         
         
         <div class="example-button-row" style="margin-top: 6%; display:flex">
-    
           <button mat-raised-button color="primary" (click)="approve(i)">Approve</button>
-          
-          
         </div>
         <div class="example-button-row" style="margin-top: 6%;margin-left: 2%; display:flex">
-    
+
           <button mat-raised-button color="primary">Reject</button>
           
           
@@ -54,13 +49,17 @@
   </mat-tab>
   <mat-tab label="Approved Accounts">
     <div>
-        <mat-card  class="card" *ngFor="let member of approvelist">
-          Name:{{member.name}}<br>
-          Email:{{member.email}}<br>
-          Password:{{member.password}}<br>
-          Tel_no.:{{member.telno}}<br>
-          Approval Status:{{member.approvalStatus}}
-        </mat-card>
+      <mat-card  class="card" *ngFor="let member of approvelist;let i = index">
+          <div>
+            Name:{{member.name}}<br>
+            Email:{{member.email}}<br>
+            Tel_no.:{{member.telno}}<br>
+        </div>
+        <div class="example-button-row" style="margin-top: 6%; display:flex">
+            <button mat-raised-button color="primary" (click)="delete(i)">Delete</button>
+        </div>
+      </mat-card>
+      
     </div>
   </mat-tab>
   <mat-tab label="Search">

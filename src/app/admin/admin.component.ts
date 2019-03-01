@@ -51,4 +51,21 @@ export class AdminComponent implements OnInit {
     this.discard=false;
     //this.router.navigate(['/admin']);
   }
+
+  delete(i: any){
+    console.log(i,this.approvelist[i].email);
+    this.loginServeice.deleteUser(this.approvelist[i].uid).subscribe((data:any)=>{
+
+      this.loginServeice.getApprovedUsers().subscribe((data:any)=>{
+        this.approvelist = data.msg;
+        
+      });
+      console.log(data,"user deleted");
+      this.loginServeice.getPendingUsers().subscribe((data:any)=>{
+        this.detailSet = data.msg;
+          
+      });
+    });
+    this.discard=false;
+  }
 }
