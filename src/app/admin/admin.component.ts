@@ -15,6 +15,7 @@ export class AdminComponent implements OnInit {
   userID : any;
   approvelist: any;
   approved: any;
+  discard = true;
   constructor(private loginServeice : LoginServiceService, private router: Router) {
     this.userID = sessionStorage.getItem('email');
     this.loginServeice.getPendingUsers().subscribe((data:any)=>{
@@ -37,8 +38,17 @@ export class AdminComponent implements OnInit {
   }
   approve(i: any){
     this.loginServeice.approveUser(this.detailSet[i].uid).subscribe((data:any)=>{
-      console.log(data);
+      this.loginServeice.getApprovedUsers().subscribe((data:any)=>{
+        this.approvelist = data.msg;
+        //console.log(data);
+      });
+      console.log("approve user");
+      this.loginServeice.getPendingUsers().subscribe((data:any)=>{
+        this.detailSet = data.msg;
+          //console.log(data);
+      });
     });
-    console.log("approve user");
+    this.discard=false;
+    //this.router.navigate(['/admin']);
   }
 }

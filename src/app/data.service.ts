@@ -12,7 +12,7 @@ export class DataService {
       projectName: projectName,
       division: division,
       landUser: landUser, 
-      lotId: lotId, 
+      lotNo: lotId, 
       mainProjectName: mainProjectName
     }
     return this.http.post(`${this.url}/createProject`,params);
