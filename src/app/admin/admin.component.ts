@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from "../../services/login-service.service";
 import { CanActivate , Router } from '@angular/router';
 import { MatSlideToggleChange } from '@angular/material';
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',

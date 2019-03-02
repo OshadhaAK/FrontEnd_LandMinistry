@@ -31,11 +31,11 @@
           Email: {{member.email}}<br>
           Tel_no.: {{member.telno}}<br>
         </div>
-        <div class="example-button-row" style="margin-top: 6%; display:flex">
-          <button mat-raised-button color="primary" (click)="approve(i)">Approve</button>
+        <div class="example-button-row " style="margin-top: 6%; display:flex">
+          <button class="approve" mat-raised-button color="#7CFC00" (click)="approve(i)">Approve</button>
         </div>
         <div class="example-button-row" style="margin-top: 6%;margin-left: 2%; display:flex">
-          <button mat-raised-button color="primary" (click)="reject(i)">Reject</button>
+          <button mat-raised-button color="warn" (click)="reject(i)">Reject</button>
         </div>
       </mat-card>
     </div>
@@ -50,7 +50,7 @@
             Tel_no.:{{member.telno}}<br>
         </div>
         <div class="example-button-row" style="margin-top: 6%; display:flex">
-            <button mat-raised-button color="primary" (click)="deletefromApprovedList(i)">Delete</button>
+            <button mat-raised-button color="warn" (click)="deletefromApprovedList(i)">Delete</button>
         </div>
       </mat-card>
       
@@ -65,7 +65,7 @@
             Tel_no.:{{member.telno}}<br>
         </div>
         <div class="example-button-row" style="margin-top: 6%; display:flex">
-            <button mat-raised-button color="primary" (click)="deletefromRejectedList(i)">Delete</button>
+            <button mat-raised-button color="warn" (click)="deletefromRejectedList(i)">Delete</button>
         </div>
       </mat-card>
       
