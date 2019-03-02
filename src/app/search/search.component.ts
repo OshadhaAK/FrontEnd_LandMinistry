@@ -40,6 +40,9 @@ export class SearchComponent implements OnInit {
         console.log("Search successfully!",data)
         if(data.success){
           this.router.navigate(['/projectdetails']);
+          console.log("project data",data);
+          //sessionStorage.setItem('projectID',data.msg[0]._id);
+          //console.log('projectID',data.msg[0]._id)
         }
         else{
           alert('Wrong project details!');
