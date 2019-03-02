@@ -47,11 +47,16 @@ export class AdminComponent implements OnInit {
     this.loginServeice.approveUser(this.detailSet[i].uid).subscribe((data:any)=>{
       this.loginServeice.getApprovedUsers().subscribe((data:any)=>{
         this.approvelist = data.msg;
+<<<<<<< Updated upstream
     
+=======
+        //console.log(data);
+>>>>>>> Stashed changes
       });
       console.log("approve user");
       this.loginServeice.getPendingUsers().subscribe((data:any)=>{
         this.detailSet = data.msg;
+<<<<<<< Updated upstream
           
       });
       this.loginServeice.getRejectedUsers().subscribe((data:any)=>{
@@ -128,6 +133,13 @@ export class AdminComponent implements OnInit {
       });
     });
     this.discard=false;
+=======
+          //console.log(data);
+      });
+    });
+    this.discard=false;
+    //this.router.navigate(['/admin']);
+>>>>>>> Stashed changes
   }
 
   
