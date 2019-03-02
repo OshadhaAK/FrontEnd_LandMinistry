@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatInputModule, MatIconModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatInputModule, MatIconModule,MatDialogModule} from '@angular/material';
 import 'hammerjs';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -27,6 +27,7 @@ import { TokenInterceptor } from '../services/tokenInterceptor';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,8 +39,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     ForgotpasswordComponent,
     ResetpasswordComponent,
     ChangepasswordComponent,
-    ProjectDetailComponent,
-    
+    ProjectDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +53,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     ReactiveFormsModule,
     MatInputModule,
     MatIconModule,
+    MatDialogModule,
     HttpClientModule
   ],
   providers: [DataService,FileService,

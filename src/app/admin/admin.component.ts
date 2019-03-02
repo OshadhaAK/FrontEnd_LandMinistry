@@ -15,18 +15,25 @@ export class AdminComponent implements OnInit {
   userID : any;
   approvelist: any;
   approved: any;
+  rejectlist : any;
   discard = true;
+  email : any;
   constructor(private loginServeice : LoginServiceService, private router: Router) {
-    this.userID = sessionStorage.getItem('email');
+    this.userID = sessionStorage.getItem('userID');
+    this.email = sessionStorage.getItem('email');
     this.loginServeice.getPendingUsers().subscribe((data:any)=>{
       this.detailSet = data.msg;
-        //console.log(data);
+        
     });
     this.loginServeice.getApprovedUsers().subscribe((data:any)=>{
       this.approvelist = data.msg;
-      //console.log(data);
+      
     });
     console.log("token",this.loginServeice.getAuthToken());
+    this.loginServeice.getRejectedUsers().subscribe((data:any)=>{
+      this.rejectlist = data.msg;
+      
+    });
    }
   
   ngOnInit() {
@@ -40,19 +47,46 @@ export class AdminComponent implements OnInit {
     this.loginServeice.approveUser(this.detailSet[i].uid).subscribe((data:any)=>{
       this.loginServeice.getApprovedUsers().subscribe((data:any)=>{
         this.approvelist = data.msg;
-        //console.log(data);
+    
       });
       console.log("approve user");
       this.loginServeice.getPendingUsers().subscribe((data:any)=>{
         this.detailSet = data.msg;
-          //console.log(data);
+          
+      });
+      this.loginServeice.getRejectedUsers().subscribe((data:any)=>{
+        this.rejectlist = data.msg;
+    
       });
     });
     this.discard=false;
-    //this.router.navigate(['/admin']);
+    
   }
 
-  delete(i: any){
+  reject(i: any){
+    console.log("reject user clicked");
+    console.log(i,this.detailSet[i].email);
+    this.loginServeice.rejectUser(this.detailSet[i].uid).subscribe((data:any)=>{
+
+      this.loginServeice.getApprovedUsers().subscribe((data:any)=>{
+        this.approvelist = data.msg;
+        
+      });
+      console.log(data,"user rejected");
+      this.loginServeice.getPendingUsers().subscribe((data:any)=>{
+        this.detailSet = data.msg;
+          
+      });
+
+      this.loginServeice.getRejectedUsers().subscribe((data:any)=>{
+        this.rejectlist = data.msg;
+    
+      });
+    });
+    this.discard=false;
+  }
+
+  deletefromApprovedList(i: any){
     console.log(i,this.approvelist[i].email);
     this.loginServeice.deleteUser(this.approvelist[i].uid).subscribe((data:any)=>{
 
@@ -65,7 +99,36 @@ export class AdminComponent implements OnInit {
         this.detailSet = data.msg;
           
       });
+
+      this.loginServeice.getRejectedUsers().subscribe((data:any)=>{
+        this.rejectlist = data.msg;
+    
+      });
     });
     this.discard=false;
   }
+
+  deletefromRejectedList(i: any){
+    console.log(i,this.rejectlist[i].email);
+    this.loginServeice.deleteUser(this.rejectlist[i].uid).subscribe((data:any)=>{
+
+      this.loginServeice.getApprovedUsers().subscribe((data:any)=>{
+        this.approvelist = data.msg;
+        
+      });
+      console.log(data,"user deleted");
+      this.loginServeice.getPendingUsers().subscribe((data:any)=>{
+        this.detailSet = data.msg;
+          
+      });
+
+      this.loginServeice.getRejectedUsers().subscribe((data:any)=>{
+        this.rejectlist = data.msg;
+    
+      });
+    });
+    this.discard=false;
+  }
+
+  
 }

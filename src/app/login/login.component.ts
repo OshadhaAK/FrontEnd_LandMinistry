@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
   password: string;
   accessToken: string;
   userID: string ;
+  userEmail:string;
+  user : any;
   email = new FormControl('', [Validators.required, Validators.email]);
 
    getErrorMessage() {
@@ -40,8 +42,10 @@ export class LoginComponent implements OnInit {
         if(data.success){
           this.userID = data.msg[0];
           this.accessToken = data.msg[1];
+          this.user = data.msg[2];
           sessionStorage.setItem('accessToken',this.accessToken);
           sessionStorage.setItem('userID',this.userID);
+          sessionStorage.setItem('email',this.user.email);
           console.log(sessionStorage.getItem('userID'));
           if(data.msg[2].user_type[0]==="user" && data.msg[2].approvalStatus[0]==="approved"){
             this.router.navigateByUrl('/search');

@@ -11,29 +11,35 @@ export class ChangepasswordComponent implements OnInit {
   hideold = true;
   hidenew = true;
   hideverify = true;
-  emailaddress: string;
   oldPassword:string;
   newPassword:string;
+  verifyPassword:string;
   userID:string;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  getErrorMessage() {
-    return this.email.hasError('required') ? 'You must enter a value' :
-        this.email.hasError('email') ? 'Not a valid email' :
-            '';
-  }
+  email : string;
+  
   constructor(private loginServeice : LoginServiceService, private router: Router) {
-    this.userID = sessionStorage.getItem('email');
+    this.email = sessionStorage.getItem('email');
     this.userID = this.loginServeice.getUID();
     console.log("uid",this.userID);
+    console.log("email",this.email);
    }
   submit(){
-    this.loginServeice.changePassword(this.userID,this.emailaddress,this.oldPassword,this.newPassword).subscribe((data:any)=>{
-      console.log(data);
-    });
+    if(this.newPassword===this.verifyPassword){
+      this.loginServeice.changePassword(this.userID,this.email,this.oldPassword,this.newPassword).subscribe((data:any)=>{
+        console.log(data);
+        alert("password changed succefully");
+        this.logout();
+      });
+    }
+    else{
+      alert("passwords do not match");
+      this.router.navigate(['/changepassword']);
+    }
   }
   ngOnInit() {
   }
   logout(){
+    console.log("logout");
     sessionStorage.clear();
     console.log("erase session",sessionStorage.getItem('email'));
     this.router.navigate(['/login']);
