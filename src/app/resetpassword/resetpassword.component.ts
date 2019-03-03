@@ -36,10 +36,16 @@ export class ResetpasswordComponent implements OnInit {
   });
   }
   resetPassword(){
-    this.loginServeice.resetPassword(this.token,this.newPassword,this.verifyPassword,this.email).subscribe((data:any)=>{
-      console.log("resetpassword",data);
-      this.router.navigate(['/login']);
-    });
+    if(this.token ==='' || this.token ==='undefined' || this.newPassword ==='' || this.newPassword ===null || this.verifyPassword ==='' || this.verifyPassword ===null || this.email ==='' || this.email ===null){
+      this.loginServeice.resetPassword(this.token,this.newPassword,this.verifyPassword,this.email).subscribe((data:any)=>{
+        console.log("resetpassword",data);
+        this.router.navigate(['/login']);
+      });
+    }
+    else{
+      alert("please fill all the fields");
+    }
+    
   }
   ngOnInit() {
   }
