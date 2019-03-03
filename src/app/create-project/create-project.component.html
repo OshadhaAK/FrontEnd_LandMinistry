@@ -22,23 +22,38 @@
     </div>
     
      
-    
+<datalist id="projectNames">
+    <option *ngFor="let projectName of projectNames" value={{projectName}}></option>
+</datalist>   
+<datalist id="divisions">
+    <option *ngFor="let division of divisions" value={{division}}></option>
+</datalist>  
+<datalist id="lotIDs">
+    <option *ngFor="let lotId of lotIDs" value={{lotId}}></option>
+</datalist>  
+<datalist id="landUsers">
+    <option *ngFor="let landUser of landUsers" value={{landUser}}></option>
+</datalist>  
+<datalist id="mainProjectNames">
+    <option *ngFor="let mainProjectName of mainProjectNames" value={{mainProjectName}}></option>
+</datalist> 
+
 </mat-toolbar>
 <div class="example-container">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Project Name" [(ngModel)] = 'projectName'>
+    <input list="projectNames" matInput placeholder="Project Name" [(ngModel)] = 'projectName'>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Division" [(ngModel)] = 'division'>
+      <input list="divisions" matInput placeholder="Division" [(ngModel)] = 'division'>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Lot no." [(ngModel)] = 'lotID'>
+      <input list="lotIDs" matInput placeholder="Lot no." [(ngModel)] = 'lotID'>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-      <input matInput placeholder="Land User" [(ngModel)] = 'landUser'>
+      <input list="landUsers" matInput placeholder="Land User" [(ngModel)] = 'landUser'>
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Main Project Name" [(ngModel)] = 'mainProjectName'>
+    <input list="mainProjectNames" matInput placeholder="Main Project Name" [(ngModel)] = 'mainProjectName'>
   </mat-form-field>
   <div class="example-button-row">
       <button mat-raised-button color="primary" (click)="create()" ><mat-icon matSuffix>add</mat-icon>Create</button>

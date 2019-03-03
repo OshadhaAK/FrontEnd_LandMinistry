@@ -7,17 +7,35 @@ import { DataService } from '../data.service';
   styleUrls: ['./create-project.component.scss']
 })
 export class CreateProjectComponent implements OnInit {
-  projectName:string;
-  division:string;
-  lotID:any;
-  landUser:any;
-  mainProjectName: string;
-  userID:any;
+  projectName: string = null;
+  division: string = null;
+  lotID: any = null;
+  landUser: any = null;
+  mainProjectName: string = null;
+  userID: any = null;
+
+  projectNames = [];
+  divisions = [];
+  lotIDs = [];
+  landUsers = [];
+  mainProjectNames = [];
+
   constructor(private dataService: DataService,private router: Router) { 
     this.userID = sessionStorage.getItem('email');
   }
 
   ngOnInit() {
+    this.dataService.search(this.projectName, this.division, this.landUser, this.lotID, null).subscribe(s => {
+      if (s.success) {
+        s.msg.forEach(project => {
+          this.projectNames.push(project.projectName);
+          this.divisions.push(project.division);
+          this.lotIDs.push(project.lotId);
+          this.landUsers.push(project.landUser);
+          this.mainProjectNames.push(project.mainProjectName);
+        });
+      }
+    })
   }
   logout(){
     sessionStorage.clear();

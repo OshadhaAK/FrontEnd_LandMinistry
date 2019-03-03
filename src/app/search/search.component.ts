@@ -12,11 +12,11 @@ import { CanActivate , Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
   userID : any;
-  projectName:string;
-  division:string;
-  lotID:any;
-  landUser:any;
-  state:any;
+  projectName: string = null;
+  division: string = null;
+  lotID: any = null;
+  landUser: any = null;
+  state: any = null;
   constructor(private dataService:DataService, private router: Router) { 
     this.userID = sessionStorage.getItem('email');
     
@@ -29,29 +29,11 @@ export class SearchComponent implements OnInit {
     console.log("erase session",sessionStorage.getItem('email'));
     this.router.navigate(['/login']);
   }
-  search(){
-    if (this.projectName === '' || this.projectName === null || this.division === '' || this.division == null  || this.lotID === '' || this.lotID == null || this.landUser === '' || this.landUser == null) {
-      alert('please enter project details');
-      this.router.navigate(['/search']);
-    }
-    else{
-      this.dataService.search(this.projectName,this.division,this.landUser,this.lotID,this.state).subscribe((data:any)=>{
-        console.log("datials",this.projectName,this.division,this.lotID,this.landUser,this.state)
-        console.log("Search successfully!",data)
-        if(data.success){
-          this.router.navigate(['/projectdetails']);
-          console.log("project data",data);
-          //sessionStorage.setItem('projectID',data.msg[0]._id);
-          //console.log('projectID',data.msg[0]._id)
-        }
-        else{
-          alert('Wrong project details!');
-          this.router.navigate(['/search']);
-        }
-      },(error: any) => {
-        alert('Wrong project details!');
-        this.router.navigate(['/search']);
+  search() {
+    this.dataService.search(this.projectName, this.division, this.landUser, this.lotID, this.state).subscribe(s => {
+      console.log(s);
+      // todo: show the search results
     });
-    }
+
   }
 }
