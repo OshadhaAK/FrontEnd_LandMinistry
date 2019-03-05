@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
   telno: number;
   category: string;
   user_type:string;
+  verifyPassword : string;
   constructor(private loginServeice : LoginServiceService, private router: Router) { }
   
 
@@ -28,9 +29,21 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   submit(){
-    this.loginServeice.createUser(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type).subscribe((data:any)=> {
-      alert('Sussecfully Registered!')
-      this.router.navigate(['/login']);
-    });
+    if(this.emailaddress === '' || this.emailaddress === null || this.password === '' || this.password == null || this.telno ===null || this.name === '' || this.name === null || this.category === '' || this.category === null || this.user_type === '' || this.user_type === null){
+      alert("Please fill all the input fields");
+    }
+    else{
+      if(this.password === this.verifyPassword){
+        this.loginServeice.createUser(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type).subscribe((data:any)=> {
+          alert('Succesfully Registered!')
+          this.router.navigate(['/login']);
+        });
+      }
+      else{
+        alert("Passwords do not match");
+      }
+      
+    }
+    
   }
 }

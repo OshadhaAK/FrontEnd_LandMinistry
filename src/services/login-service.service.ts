@@ -94,13 +94,16 @@ export class LoginServiceService {
     return this.http.post(`${this.url}/reset/forgotPassword`,params);
   }
 
+
   resetPassword(token:string,newPassword:string,verifyPassword:string, email:string){
+
     const params ={
       token : token,
       newPassword : newPassword,
       verifyPassword : verifyPassword,
       email: email
     };
+    console.log(params);
     return this.http.post(`${this.url}/reset/resetPassword`,params);
   }
 

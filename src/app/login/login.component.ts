@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
           this.userID = data.msg[0];
           this.accessToken = data.msg[1];
           this.user = data.msg[2];
+          console.log(this.user);
           sessionStorage.setItem('accessToken',this.accessToken);
           sessionStorage.setItem('userID',this.userID);
           sessionStorage.setItem('email',this.user.email);
@@ -52,7 +53,11 @@ export class LoginComponent implements OnInit {
           }
           else if(data.msg[2].user_type[0]==="admin" && data.msg[2].approvalStatus[0]==="approved"){
             this.router.navigateByUrl('/admin');
-          }     
+          }  
+          else if(data.msg[2].user_type[0]==="sudo"){
+            
+            this.router.navigateByUrl('/admin');
+          }   
           else if(data.msg[2].approvalStatus[0]==="pending"){
             alert("your account is still pending approval");
           }       
