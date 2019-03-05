@@ -13,6 +13,7 @@ import { from } from 'rxjs';
 import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { DataService } from './data.service';
+import { MainProjectService } from './services/main-project.service';
 import { LoginServiceService } from "../services/login-service.service";
 import { FileService } from './services/file.service';
 import { AdminComponent } from './admin/admin.component';
@@ -27,6 +28,7 @@ import { TokenInterceptor } from '../services/tokenInterceptor';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { CreateMainProjectComponent } from './create-main-project/create-main-project.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     ForgotpasswordComponent,
     ResetpasswordComponent,
     ChangepasswordComponent,
-    ProjectDetailComponent
+    ProjectDetailComponent,
+    CreateMainProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
   ],
   providers: [DataService,FileService,
     LoginServiceService,
+    MainProjectService,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

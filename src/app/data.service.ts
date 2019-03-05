@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,13 +19,23 @@ export class DataService {
     return this.http.post(`${this.url}/createProject`,params);
   }
 
-  search(projectName, division, landUser, lotId, state){
+  search(projectName, division, landUser, lotId, state): Observable<any> {
     let params = new HttpParams()
-    params = params.append('projectName',projectName)
-    params = params.append('division',division)    
-    params = params.append('landUser',landUser)    
-    params = params.append('lotId',lotId)    
-    params = params.append('state',state)
+    if (projectName != null) {
+      params = params.append('projectName', projectName);
+    }
+    if (division != null) {
+      params = params.append('division', division);
+    }
+    if (landUser != null) {
+      params = params.append('landUser', landUser);
+    }
+    if (lotId != null){
+      params = params.append('lotId', lotId);
+    }
+    if (state != null) {
+      params = params.append('state', state);
+    }
     return this.http.get(`${this.url}/search`,{params:params});
   }
 
