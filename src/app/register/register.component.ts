@@ -29,6 +29,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   submit(){
+<<<<<<< Updated upstream
     if(this.emailaddress === '' || this.emailaddress === null || this.password === '' || this.password == null || this.telno ===null || this.name === '' || this.name === null || this.category === '' || this.category === null || this.user_type === '' || this.user_type === null){
+=======
+    this.loginServeice.createUser(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type).subscribe((data:any)=> {
+
+      this.flashMessageServie.show('Sussecfully Registered!', {cssClass: 'alert-success', timeout: 1000});
+      this.router.navigate(['/login']);
+    });
+>>>>>>> Stashed changes
   }
 }
