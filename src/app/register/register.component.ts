@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { DataService } from '../data.service';
 import { LoginServiceService } from "../../services/login-service.service";
 import { CanActivate , Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -17,8 +18,7 @@ export class RegisterComponent implements OnInit {
   telno: number;
   category: string;
   user_type:string;
-  verifyPassword : string;
-  constructor(private loginServeice : LoginServiceService, private router: Router) { }
+  constructor(private loginServeice : LoginServiceService, private router: Router, private flashMessageServie: FlashMessagesService) { }
   
 
   getErrorMessage() {
@@ -29,21 +29,14 @@ export class RegisterComponent implements OnInit {
   ngOnInit() {
   }
   submit(){
+<<<<<<< Updated upstream
     if(this.emailaddress === '' || this.emailaddress === null || this.password === '' || this.password == null || this.telno ===null || this.name === '' || this.name === null || this.category === '' || this.category === null || this.user_type === '' || this.user_type === null){
-      alert("Please fill all the input fields");
-    }
-    else{
-      if(this.password === this.verifyPassword){
-        this.loginServeice.createUser(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type).subscribe((data:any)=> {
-          alert('Succesfully Registered!')
-          this.router.navigate(['/login']);
-        });
-      }
-      else{
-        alert("Passwords do not match");
-      }
-      
-    }
-    
+=======
+    this.loginServeice.createUser(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type).subscribe((data:any)=> {
+
+      this.flashMessageServie.show('Sussecfully Registered!', {cssClass: 'alert-success', timeout: 1000});
+      this.router.navigate(['/login']);
+    });
+>>>>>>> Stashed changes
   }
 }

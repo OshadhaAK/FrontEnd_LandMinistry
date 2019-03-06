@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { DataService } from '../data.service';
 import { LoginServiceService } from "../../services/login-service.service";
 import { ActivatedRoute, Params , Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-forgotpassword',
   templateUrl: './forgotpassword.component.html',
@@ -19,33 +20,29 @@ export class ForgotpasswordComponent implements OnInit {
          this.email.hasError('email') ? 'Not a valid email' :
              '';
    }
-  constructor(private loginServeice : LoginServiceService, private router: Router,private activatedRoute: ActivatedRoute) { 
-    
-    
-  }
+  constructor(private loginServeice: LoginServiceService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private flashMessageService: FlashMessagesService) { }
   
   ngOnInit() {
   }
   submit(){    
     if(this.emailaddress === null || this.emailaddress === '' || this.emailaddress=== undefined ){
-      
-      alert('please enter your email address');
-      this.router.navigate(['/forgotpassword']);
+      this.flashMessageService.show('please enter your email address', {cssClass: 'alert-danger', timeout: 1000});
     }
     else{
       sessionStorage.setItem('email',this.emailaddress);
       this.loginServeice.forgotPassword(this.emailaddress).subscribe((data:any)=>{
         if(data.success){
-          alert("Verify your email");
+          this.flashMessageService.show('verify your email address', {cssClass: 'alert-danger', timeout: 1000});
         }
         else{
-          alert("Unauthorized access!");
-          this.router.navigate(['/forgotpassword']);
+          this.flashMessageService.show('Unauthorized access!', {cssClass: 'alert-danger', timeout: 1000});
         }
         
       },(error: any) => {
-        alert('Unauthorized access!');
-        this.router.navigate(['/forgotpassword']);
+        this.flashMessageService.show('Unauthorized access!', {cssClass: 'alert-danger', timeout: 1000});
     });
 
       

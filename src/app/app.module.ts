@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatInputModule, MatIconModule,MatDialogModule} from '@angular/material';
 import 'hammerjs';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { from } from 'rxjs';
@@ -57,7 +58,8 @@ import { CreateMainProjectComponent } from './create-main-project/create-main-pr
     MatInputModule,
     MatIconModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    FlashMessagesModule.forRoot()
   ],
   providers: [DataService,FileService,
     LoginServiceService,
