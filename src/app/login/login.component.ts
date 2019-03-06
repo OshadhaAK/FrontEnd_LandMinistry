@@ -3,6 +3,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { DataService } from '../data.service';
 import { LoginServiceService } from "../../services/login-service.service";
 import { CanActivate , Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
              '';
    }
    
-  constructor(private loginServeice : LoginServiceService, private router: Router) {
+  constructor(private loginServeice : LoginServiceService, private router: Router, private flashMessageService: FlashMessagesService) {
     
    }
    
@@ -33,8 +34,7 @@ export class LoginComponent implements OnInit {
   submit(){
     sessionStorage.setItem('email',this.emailaddress);
     if (this.emailaddress === '' || this.emailaddress === null || this.password === '' || this.password == null) {
-      alert('please enter login credentials');
-      this.router.navigate(['/login']);
+      this.flashMessageService.show('Enter Login credentials', {cssClass: 'alert-danger', timeout: 1000});
     }
     else{
       this.loginServeice.login(this.emailaddress,this.password).subscribe((data: any) => {
@@ -59,16 +59,14 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/admin');
           }   
           else if(data.msg[2].approvalStatus[0]==="pending"){
-            alert("your account is still pending approval");
+            this.flashMessageService.show('your account is still pending approval', {cssClass: 'alert-danger', timeout: 1000});
           }       
           console.log(data);
         }else{
-          alert('wrong login credentials!');
-          this.router.navigate(['/login']);
+          this.flashMessageService.show('wrong login credentials!', {cssClass: 'alert-danger', timeout: 1000});
         }
       },(error: any) => {
-          alert('Wrong login credentials!');
-          this.router.navigate(['/login']);
+        this.flashMessageService.show('wrong login credentials!', {cssClass: 'alert-danger', timeout: 1000});
       });
     }
     

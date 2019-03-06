@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from "../../services/login-service.service";
 import {FormControl, Validators} from '@angular/forms';
 import { CanActivate , Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-changepassword',
   templateUrl: './changepassword.component.html',
@@ -17,7 +18,7 @@ export class ChangepasswordComponent implements OnInit {
   userID:string;
   email : string;
   
-  constructor(private loginServeice : LoginServiceService, private router: Router) {
+  constructor(private loginServeice : LoginServiceService, private router: Router, private flashMessageService: FlashMessagesService) {
     this.email = sessionStorage.getItem('email');
     this.userID = this.loginServeice.getUID();
     console.log("uid",this.userID);
@@ -27,13 +28,13 @@ export class ChangepasswordComponent implements OnInit {
     if(this.newPassword===this.verifyPassword){
       this.loginServeice.changePassword(this.userID,this.email,this.oldPassword,this.newPassword).subscribe((data:any)=>{
         console.log(data);
-        alert("password changed succefully");
+        this.flashMessageService.show('password changed succefully', {cssClass: 'alert-success', timeout: 1000});
         this.logout();
       });
     }
     else{
-      alert("passwords do not match");
-      this.router.navigate(['/changepassword']);
+      this.flashMessageService.show('passwords do not match', {cssClass: 'alert-danger', timeout: 1000});
+
     }
   }
   ngOnInit() {

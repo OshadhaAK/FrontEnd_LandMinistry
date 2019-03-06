@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from "../../services/login-service.service";
 import { ActivatedRoute, Params , Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-resetpassword',
   templateUrl: './resetpassword.component.html',
@@ -14,7 +15,11 @@ export class ResetpasswordComponent implements OnInit {
   verifyPassword:string;
   userID: any;
   email :string;
-  constructor(private loginServeice : LoginServiceService,private activatedRoute: ActivatedRoute, private router: Router) { 
+  constructor(private loginServeice : LoginServiceService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private falshMessageService: FlashMessagesService) {
+
     //console.log("sfvsf",this.token);
     this.userID = sessionStorage.getItem('email');
     this.activatedRoute.queryParams.subscribe(params => {
@@ -23,14 +28,14 @@ export class ResetpasswordComponent implements OnInit {
       console.log("paramtoken",token,this.email); 
       this.loginServeice.verifyToken(token).subscribe((data:any)=>{
           if(data.success){
-            alert("change your password");
+            this.falshMessageService.show('Change your password', {cssClass: 'alert-success', timeout: 1000});
             this.token=token;
           }else{
-            alert("Not autherized to change the password");
+            this.falshMessageService.show('Not autherized to change the password', {cssClass: 'alert-danger', timeout: 1000});
             this.router.navigate(['/forgotpassword']);
           }
       },(error: any) => {
-        alert('invalid email!');
+        this.falshMessageService.show('invalid email!', {cssClass: 'alert-danger', timeout: 1000});
         this.router.navigate(['/login']);
     });
   });

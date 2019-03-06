@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CanActivate , Router } from '@angular/router';
 import { DataService } from '../data.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 @Component({
   selector: 'app-create-project',
   templateUrl: './create-project.component.html',
@@ -20,7 +21,7 @@ export class CreateProjectComponent implements OnInit {
   landUsers = [];
   mainProjectNames = [];
 
-  constructor(private dataService: DataService,private router: Router) { 
+  constructor(private dataService: DataService,private router: Router, private flashMessageService: FlashMessagesService) { 
     this.userID = sessionStorage.getItem('email');
   }
 
@@ -51,10 +52,10 @@ export class CreateProjectComponent implements OnInit {
       console.log(this.mainProjectName);
       this.dataService.createProject(this.projectName,this.division,this.landUser,this.lotID,this.mainProjectName).subscribe((data:any)=>{
         console.log(data)
-        alert("Project Created Successfully!")
+        this.flashMessageService.show('Project Created Successfully!', {cssClass: 'alert-success', timeout: 1000});
         this.router.navigate(['/createproject']);
       },(error: any) => {
-        alert('Wrong project details!');
+        this.flashMessageService.show('Wrong project details!', {cssClass: 'alert-danger', timeout: 1000});
         this.router.navigate(['/createproject']);
     });
     }
