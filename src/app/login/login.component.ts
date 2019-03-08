@@ -34,20 +34,20 @@ export class LoginComponent implements OnInit {
   submit(){
     sessionStorage.setItem('email',this.emailaddress);
     if (this.emailaddress === '' || this.emailaddress === null || this.password === '' || this.password == null) {
-      this.flashMessageService.show('Enter Login credentials', {cssClass: 'alert-danger', timeout: 1000});
+      this.flashMessageService.show('Please enter the Login credentials', {cssClass: 'alert-danger', timeout: 3000});
     }
     else{
       this.loginServeice.login(this.emailaddress,this.password).subscribe((data: any) => {
-        console.log("usertype",data.msg[2].user_type[0],data.msg[2].approvalStatus[0]);
+       
         if(data.success){
           this.userID = data.msg[0];
           this.accessToken = data.msg[1];
           this.user = data.msg[2];
-          console.log(this.user);
+          
           sessionStorage.setItem('accessToken',this.accessToken);
           sessionStorage.setItem('userID',this.userID);
           sessionStorage.setItem('email',this.user.email);
-          console.log(sessionStorage.getItem('userID'));
+          
           if(data.msg[2].user_type[0]==="user" && data.msg[2].approvalStatus[0]==="approved"){
             this.router.navigateByUrl('/search');
           }
@@ -59,14 +59,14 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/admin');
           }   
           else if(data.msg[2].approvalStatus[0]==="pending"){
-            this.flashMessageService.show('your account is still pending approval', {cssClass: 'alert-danger', timeout: 1000});
+            this.flashMessageService.show('Your account is still pending approval', {cssClass: 'alert-danger', timeout: 3000});
           }       
-          console.log(data);
+          
         }else{
-          this.flashMessageService.show('wrong login credentials!', {cssClass: 'alert-danger', timeout: 1000});
+          this.flashMessageService.show('Wrong login credentials!', {cssClass: 'alert-danger', timeout: 3000});
         }
       },(error: any) => {
-        this.flashMessageService.show('wrong login credentials!', {cssClass: 'alert-danger', timeout: 1000});
+        this.flashMessageService.show('Wrong login credentials!', {cssClass: 'alert-danger', timeout: 3000});
       });
     }
     
