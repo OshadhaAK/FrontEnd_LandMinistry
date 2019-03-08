@@ -1,29 +1,4 @@
-<mat-toolbar class='toolbar'>
-    <span style="color:white">MAGANAGUMA</span>
-  
-    <!-- This fills the remaining space of the current row -->
-    <span class="example-fill-remaining-space"></span>
-    
-    <div style="color: white">
-            {{userID}}
-            <mat-select style="width: 5%; color: white">
-        
-                    <mat-option>
-                            <a routerLink="./" style="font-size: 80%; text-decoration: none">Profile</a>
-                    </mat-option>
-                    <mat-option >
-                        <a routerLink="/changepassword" style="font-size: 80%; text-decoration: none">Change Password</a> 
-                    </mat-option>
-                    <mat-option >
-                        <a (click)="logout()" style="font-size: 80%; text-decoration: none">Logout</a>
-                    </mat-option>
-                    
-                </mat-select>
-    </div>
-    
-     
-    
-</mat-toolbar>
+<app-navbar></app-navbar>
 <div class="example-container">
     <mat-form-field class="example-full-width">
         <input matInput placeholder="Project Name" [(ngModel)] = 'projectName'>

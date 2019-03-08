@@ -11,7 +11,7 @@ export class ProjectDetailComponent implements OnInit {
   userID : any;
   projectID: any;
   constructor(private router: Router, private fileService: FileService) {
-    //this.projectID = sessionStorage.getItem('projectID');
+    
     this.userID = sessionStorage.getItem('email');
     this.fileService.getProjectFiles(this.projectID).subscribe((data:any)=>{
       console.log("project files",data)

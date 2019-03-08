@@ -1,0 +1,19 @@
+<mat-toolbar class='toolbar'>
+    <span style="color:white; cursor: pointer;" class='link' routerLink="/">Home</span>
+    <div class="vl"></div>
+    <span style="color:white; cursor: pointer;" class="link" routerLink="/search">Search Project</span>
+    <div class="vl"></div>
+    <span style="color:white; cursor: pointer;" class="link" routerLink="/changepassword">Change Password</span>
+    <div class="vl"></div>
+    <!-- This fills the remaining space of the current row -->
+    <span class="example-fill-remaining-space"></span>
+    <div style="color: white; cursor: pointer;">
+        {{email}}
+        <mat-select style="width: 5%; color: white">
+                <mat-option >
+                    <a (click)="logout()" style="font-size: 80%; text-decoration: none">Logout</a>
+                </mat-option>
+                
+            </mat-select>
+  </div>
+  </mat-toolbar>

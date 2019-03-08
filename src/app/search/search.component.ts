@@ -19,7 +19,6 @@ export class SearchComponent implements OnInit {
   state: any = null;
   constructor(private dataService:DataService, private router: Router) { 
     this.userID = sessionStorage.getItem('email');
-    
   }
   
   ngOnInit() {

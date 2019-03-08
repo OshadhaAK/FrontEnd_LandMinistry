@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { CreateMainProjectComponent } from './create-main-project/create-main-project.component';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SearchResultComponent } from './search-result/search-result.component';
     ChangepasswordComponent,
     ProjectDetailComponent,
     CreateMainProjectComponent,
-    SearchResultComponent
+    SearchResultComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
