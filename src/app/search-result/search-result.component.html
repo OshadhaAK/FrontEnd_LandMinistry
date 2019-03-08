@@ -1,0 +1,95 @@
+<mat-toolbar class='toolbar'>
+  <span style="color:white">MAGANAGUMA</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+  <div style="color: white">
+      {{email}}
+      <mat-select style="width: 5%; color: white">
+  
+              <mat-option>
+                      <a routerLink="./" style="font-size: 80%; text-decoration: none">Profile</a>
+              </mat-option>
+              <mat-option >
+                  <a routerLink="/changepassword" style="font-size: 80%; text-decoration: none">Change Password</a> 
+              </mat-option>
+              <mat-option >
+                  <a (click)="logout()" style="font-size: 80%; text-decoration: none">Logout</a>
+              </mat-option>
+              
+          </mat-select>
+</div>
+</mat-toolbar>
+
+<div class="example-container">
+  <h2 class="form-signin-heading" style='text-align: center; margin-top: 1%'>Search Results</h2>
+  <table class="table" >
+    <th>#</th>
+    <th >Main Project Name</th>
+    <th> project Name </th>
+    <th> Lot ID </th>
+    <th> Land User </th>
+    <th> State </th>
+    <tbody>
+    <tr>
+        <td>
+            <button *ngFor= "let project of projects;let i=index" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{i+1}} </button>
+        </td>
+        <td>
+        <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.mainProjectName}} </button>
+        </td>
+        <td>
+            <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.projectName}} </button>
+        </td>
+        <td>
+          <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.lotId}} </button>
+        </td>
+        <td>
+            <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.landUser}} </button>
+        </td>
+        <td>
+            <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.state}} </button>
+        </td>
+    </tr>
+      <!--
+    <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" ><td>{{project.mainProjectName}} </td> &nbsp;&nbsp;&nbsp;<td>{{project.projectName}}</td>&nbsp;&nbsp;&nbsp;{{project.lotId}} &nbsp;&nbsp;&nbsp; {{project.landUser}} &nbsp;&nbsp;&nbsp; {{project.state}}</button>
+    -->
+   
+  </tbody>
+  </table>
+
+  <!--
+  <mat-table  [dataSource]="dataSource">
+    
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let row">{{row.mainProjectName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Title</th>
+      <td mat-cell *matCellDef="let row">{{row.title}}</td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef>State</th>
+      <td mat-cell *matCellDef="let row">{{row.state}}</td>
+    </ng-container>
+
+    
+    <ng-container matColumnDef="created">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+        Created
+      </th>
+      <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+-->
+</div>
+  
+
+  

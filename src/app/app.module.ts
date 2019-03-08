@@ -9,6 +9,7 @@ import {MatButtonModule, MatCheckboxModule, MatInputModule, MatIconModule,MatDia
 import 'hammerjs';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { from } from 'rxjs';
 import { RegisterComponent } from './register/register.component';
@@ -30,6 +31,7 @@ import { TokenInterceptor } from '../services/tokenInterceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { CreateMainProjectComponent } from './create-main-project/create-main-project.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
   declarations: [
@@ -43,13 +45,15 @@ import { CreateMainProjectComponent } from './create-main-project/create-main-pr
     ResetpasswordComponent,
     ChangepasswordComponent,
     ProjectDetailComponent,
-    CreateMainProjectComponent
+    CreateMainProjectComponent,
+    SearchResultComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    MatTableModule,
     MatButtonModule, 
     MatCheckboxModule,
     MatFormFieldModule,

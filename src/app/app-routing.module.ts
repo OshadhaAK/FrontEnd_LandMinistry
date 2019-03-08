@@ -12,6 +12,7 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { CreateMainProjectComponent } from './create-main-project/create-main-project.component'
 
   import { from } from 'rxjs';
+import { SearchResultComponent } from './search-result/search-result.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -46,6 +47,9 @@ const routes: Routes = [
   },{
     path: 'changepassword',
     component: ChangepasswordComponent
+  },{
+    path: 'searchresult',
+    component: SearchResultComponent
   },{
     path: 'projectdetails',
     component: ProjectDetailComponent

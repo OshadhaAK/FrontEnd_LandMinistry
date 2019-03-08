@@ -55,7 +55,6 @@ export class LoginComponent implements OnInit {
             this.router.navigateByUrl('/admin');
           }  
           else if(data.msg[2].user_type[0]==="sudo"){
-            
             this.router.navigateByUrl('/admin');
           }   
           else if(data.msg[2].approvalStatus[0]==="pending"){
