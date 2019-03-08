@@ -32,17 +32,18 @@ export class ForgotpasswordComponent implements OnInit {
       this.flashMessageService.show('please enter your email address', {cssClass: 'alert-danger', timeout: 1000});
     }
     else{
+      
       sessionStorage.setItem('email',this.emailaddress);
       this.loginServeice.forgotPassword(this.emailaddress).subscribe((data:any)=>{
         if(data.success){
-          this.flashMessageService.show('verify your email address', {cssClass: 'alert-danger', timeout: 1000});
+          this.flashMessageService.show('Please check your email for password reset link', {cssClass: 'alert-success', timeout: 3000});
         }
         else{
-          this.flashMessageService.show('Unauthorized access!', {cssClass: 'alert-danger', timeout: 1000});
+          this.flashMessageService.show('Unauthorized access!', {cssClass: 'alert-danger', timeout: 3000});
         }
         
       },(error: any) => {
-        this.flashMessageService.show('Unauthorized access!', {cssClass: 'alert-danger', timeout: 1000});
+        this.flashMessageService.show('Unauthorized access!', {cssClass: 'alert-danger', timeout: 3000});
     });
 
       
