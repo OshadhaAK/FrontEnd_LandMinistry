@@ -34,6 +34,7 @@ import { CreateMainProjectComponent } from './create-main-project/create-main-pr
 import { SearchResultComponent } from './search-result/search-result.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
+import { RouteGuardGuard  } from "./route-guard.guard";
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +71,7 @@ import { NavbarComponent } from './navbar/navbar.component';
   providers: [DataService,FileService,
     LoginServiceService,
     MainProjectService,
+    RouteGuardGuard,
     {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,

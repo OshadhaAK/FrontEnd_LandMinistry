@@ -44,7 +44,7 @@ export class AdminComponent implements OnInit {
       this.approvelist = data.msg;
       
     });
-    console.log("token",this.loginServeice.getAuthToken());
+    
     this.loginServeice.getRejectedUsers().subscribe((data:any)=>{
       this.rejectlist = data.msg;
       

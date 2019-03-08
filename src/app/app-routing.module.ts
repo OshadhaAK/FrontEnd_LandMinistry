@@ -11,8 +11,8 @@ import { ChangepasswordComponent } from './changepassword/changepassword.compone
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { CreateMainProjectComponent } from './create-main-project/create-main-project.component'
 
-  import { from } from 'rxjs';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { RouteGuardGuard } from "./route-guard.guard";
 const routes: Routes = [
   {
     path: 'login',
@@ -24,19 +24,24 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    component: SearchComponent
+    component: SearchComponent,
+    canActivate : [RouteGuardGuard]
   },
   {
+    /* todo make sure only admins can goto admin*/ 
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate : [RouteGuardGuard]
   },
   {
     path: 'createproject',
-    component: CreateProjectComponent
+    component: CreateProjectComponent,
+    canActivate : [RouteGuardGuard]
   },
   {
     path: 'createMainProject',
-    component: CreateMainProjectComponent
+    component: CreateMainProjectComponent,
+    canActivate : [RouteGuardGuard]
   },
   {
     path: 'forgotpassword',
@@ -46,13 +51,16 @@ const routes: Routes = [
     component: ResetpasswordComponent
   },{
     path: 'changepassword',
-    component: ChangepasswordComponent
+    component: ChangepasswordComponent,
+    canActivate : [RouteGuardGuard]
   },{
     path: 'searchresult',
-    component: SearchResultComponent
+    component: SearchResultComponent,
+    canActivate : [RouteGuardGuard]
   },{
     path: 'projectdetails',
-    component: ProjectDetailComponent
+    component: ProjectDetailComponent,
+    canActivate : [RouteGuardGuard]
   }
 ];
 
