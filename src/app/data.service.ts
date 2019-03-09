@@ -1,26 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BackendMessage } from './backend-message';
+import { ProjectData } from './project-data';
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
   url = 'http://localhost:3301/projects';
+
+  searchResults = new BehaviorSubject<Array<ProjectData>>(null);
   constructor(private http: HttpClient) { }
 
-  createProject(projectName, division, landUser, lotId, mainProjectName){
+  createProject(projectName, division, landUser, lotId, mainProjectName) {
     const params = {
-      projectName: projectName,
-      division: division,
-      landUser: landUser, 
-      lotNo: lotId, 
-      mainProjectName: mainProjectName
-    }
-    return this.http.post(`${this.url}/createProject`,params);
+      projectName,
+      division,
+      landUser,
+      lotNo: lotId,
+      mainProjectName
+    };
+    return this.http.post(`${this.url}/createProject`, params);
   }
 
-  search(projectName, division, landUser, lotId, state): Observable<any> {
-    let params = new HttpParams()
+  saveSearchResults(searchResults: Array<ProjectData>){
+    sessionStorage.setItem('search-results', JSON.stringify(searchResults));
+  }
+
+  getSearchResults(): Array<ProjectData>{
+    return JSON.parse(sessionStorage.getItem('search-results'));
+  };
+
+  search(projectName, division, landUser, lotId, state): Observable<BackendMessage> {
+    let params = new HttpParams();
     if (projectName != null) {
       params = params.append('projectName', projectName);
     }
@@ -30,20 +43,20 @@ export class DataService {
     if (landUser != null) {
       params = params.append('landUser', landUser);
     }
-    if (lotId != null){
+    if (lotId != null) {
       params = params.append('lotId', lotId);
     }
     if (state != null) {
       params = params.append('state', state);
     }
-    return this.http.get(`${this.url}/search`,{params:params});
+    return this.http.get(`${this.url}/search`, {params}) as Observable<BackendMessage>;
   }
 
-  sendToNextStage(projectId, nextStage){
+  sendToNextStage(projectId, nextStage) {
     const params = {
-      projectId: projectId,
-      nextStage: nextStage
-    }
-    return this.http.post(`${this.url}/sendToNextStage`,params);
+      projectId,
+      nextStage
+    };
+    return this.http.post(`${this.url}/sendToNextStage`, params);
   }
 }
