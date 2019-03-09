@@ -27,6 +27,7 @@ export class SearchResultComponent implements OnInit {
   openProject(event: any) {
     const projectId = event.target.value;
     console.log(projectId);
+    this.router.navigate(['/projectdetails', projectId]);
     /*Open the project page by using project ID*/
   }
 
