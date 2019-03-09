@@ -10,6 +10,7 @@
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 10px;
   }
   
   .example-container > * {
@@ -40,9 +41,23 @@
     background-color: #2196f3;
 
   }
+
+  .toolbar a, .toolbar a:visited,.toolbar a:hover,.toolbar a:active {
+    text-decoration:none;
+  }
+
+  .example-button-row {
+    text-align: center;
+    align-items: center;
+    margin: 10px;
+  }
   
-.example-button-row button,
+.example-button-row button{
+  margin: auto;
+  display: inline-block;
+}
 .example-button-row a {
-  margin-right: 8px;
-  margin-bottom: 2%;
+  text-align: center;
+  display: flex;
+  margin: 3px;
 }
