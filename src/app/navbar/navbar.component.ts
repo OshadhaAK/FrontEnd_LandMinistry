@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
+    console.log("cli1");
     sessionStorage.clear();
     console.log("erase session",sessionStorage.getItem('email'));
     this.router.navigate(['/login']);

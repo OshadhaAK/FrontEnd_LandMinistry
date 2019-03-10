@@ -74,7 +74,8 @@ export class LoginServiceService {
     const params ={
       token : token
     };
-    return this.http.post(`${this.url}/verify`,params);
+    console.log(params);
+    return this.http.post(`${this.url}/login/verifyUser`,params);
   }
 
   changePassword(uid:string,email:string,oldPassword:string,newPassword : string){

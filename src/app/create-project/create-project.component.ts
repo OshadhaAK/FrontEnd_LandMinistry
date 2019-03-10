@@ -21,7 +21,7 @@ export class CreateProjectComponent implements OnInit {
   landUsers = [];
   mainProjectNames = [];
 
-  constructor(private dataService: DataService,private router: Router, private flashMessageService: FlashMessagesService) { 
+  constructor(private dataService: DataService,private router: Router, private flashMessageServie: FlashMessagesService) { 
     this.userID = sessionStorage.getItem('email');
   }
 
@@ -45,17 +45,24 @@ export class CreateProjectComponent implements OnInit {
   }
   create(){
     if (this.projectName === '' || this.projectName === null || this.division === '' || this.division == null  || this.lotID === '' || this.lotID == null || this.landUser === '' || this.landUser == null) {
-      alert('please enter project details');
+      this.flashMessageServie.show('Please Enter Project Details', {cssClass: 'alert-success', timeout: 3000});
+      
       this.router.navigate(['/createproject']);
     }
     else{
       console.log(this.mainProjectName);
       this.dataService.createProject(this.projectName,this.division,this.landUser,this.lotID,this.mainProjectName).subscribe((data:any)=>{
-        console.log(data)
-        this.flashMessageService.show('Project Created Successfully!', {cssClass: 'alert-success', timeout: 1000});
-        this.router.navigate(['/createproject']);
+        if(data.success==true){
+          console.log(data)
+          this.flashMessageServie.show('Project Created Successfully!', {cssClass: 'alert-success', timeout: 3000});
+          this.router.navigate(['/search']);
+        }
+        else{
+          this.flashMessageServie.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
+        }
+        
       },(error: any) => {
-        this.flashMessageService.show('Wrong project details!', {cssClass: 'alert-danger', timeout: 1000});
+        this.flashMessageServie.show('Wrong project details!', {cssClass: 'alert-danger', timeout: 1000});
         this.router.navigate(['/createproject']);
     });
     }

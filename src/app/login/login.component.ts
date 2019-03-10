@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
       this.loginServeice.login(this.emailaddress,this.password).subscribe((data: any) => {
        
         if(data.success){
+          console.log(data);
           this.userID = data.msg[0];
           this.accessToken = data.msg[1];
           this.user = data.msg[2];
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('accessToken',this.accessToken);
           sessionStorage.setItem('userID',this.userID);
           sessionStorage.setItem('email',this.user.email);
+          sessionStorage.setItem('category',this.user.category);
           
           if(data.msg[2].user_type[0]==="user" && data.msg[2].approvalStatus[0]==="approved"){
             this.router.navigateByUrl('/search');
