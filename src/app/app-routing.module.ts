@@ -58,7 +58,7 @@ const routes: Routes = [
     component: SearchResultComponent,
     canActivate : [RouteGuardGuard]
   },{
-    path: 'projectdetails',
+    path: 'projectdetails/:id',
     component: ProjectDetailComponent,
     canActivate : [RouteGuardGuard]
   }
