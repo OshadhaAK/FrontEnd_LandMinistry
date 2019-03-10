@@ -23,6 +23,7 @@ export class ProjectDetailComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.projectID = params.get('id');
+      // get the list of all the files currently available
       this.fileService.getProjectFiles(this.projectID).subscribe(res => {
         if (res.success) {
           res.msg.forEach(fileId => {
@@ -32,9 +33,16 @@ export class ProjectDetailComponent implements OnInit {
           });
         }
       });
-      this.dataService.getProjectStage(this.projectID).subscribe(msg => {
-        console.log('current stage', msg);
-      })
+      // get current stage info (permission , option:pdf, boolean)
+      this.dataService.getProjectStage(this.projectID).subscribe(res => {
+        if (res.success) {
+          const stage = res.msg;
+          this.dataService.getStageInfo(stage).subscribe(msg => {
+            console.log('Current stage info', msg);
+          });
+        }
+      });
+      // get the next stage
       this.dataService.getNextStage(this.projectID).subscribe(msg => {
         console.log('next stage', msg);
       });

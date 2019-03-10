@@ -30,6 +30,12 @@ export class DataService {
     return this.http.get(`${this.url}/nextStageById`, {params}) as Observable<BackendMessage>;
   }
 
+  getStageInfo(stage): Observable<BackendMessage> {
+    let params = new HttpParams();
+    params = params.append('stage', stage);
+    return this.http.get(`${this.url}/stageInfo`, {params}) as Observable<BackendMessage>;
+  }
+
   saveSearchResults(searchResults: Array<ProjectData>){
     sessionStorage.setItem('search-results', JSON.stringify(searchResults));
   }
