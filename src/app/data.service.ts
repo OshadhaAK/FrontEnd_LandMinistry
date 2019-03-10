@@ -24,6 +24,12 @@ export class DataService {
     return this.http.post(`${this.url}/createProject`, params);
   }
 
+  getNextStage(projectId): Observable<BackendMessage> {
+    let params = new HttpParams();
+    params = params.append('projectId', projectId);
+    return this.http.get(`${this.url}/nextStageById`, {params}) as Observable<BackendMessage>;
+  }
+
   saveSearchResults(searchResults: Array<ProjectData>){
     sessionStorage.setItem('search-results', JSON.stringify(searchResults));
   }
@@ -50,6 +56,12 @@ export class DataService {
       params = params.append('state', state);
     }
     return this.http.get(`${this.url}/search`, {params}) as Observable<BackendMessage>;
+  }
+
+  getProjectStage(projectId): Observable<BackendMessage> {
+    let params = new HttpParams();
+    params = params.append('projectId', projectId);
+    return this.http.get(`${this.url}/stateById`, {params}) as Observable<BackendMessage>;
   }
 
   sendToNextStage(projectId, nextStage) {
