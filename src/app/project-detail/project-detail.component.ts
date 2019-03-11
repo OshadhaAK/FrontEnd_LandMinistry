@@ -77,7 +77,6 @@ export class ProjectDetailComponent implements OnInit {
           this.dataService.getStageInfo(stage).subscribe(msg => {
             if (msg.success) {
               this.currentStageInput = msg.msg.option;
-              console.log(msg.msg.permission)
               this.hasPermission = this.loginServie.getUserType() === msg.msg.permission;
             }
           });
@@ -85,7 +84,6 @@ export class ProjectDetailComponent implements OnInit {
       });
       // get the next stage
       this.dataService.getNextStage(this.projectID).subscribe(msg => {
-        console.log('next stage', msg);
         if (msg.success) {
           this.nextStages = msg.msg;
           this.nextStage = `${this.nextStages[0]}`;
@@ -106,7 +104,6 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   changeNext(i){
-    console.log(i)
   }
 
   onFileClick(id) {
@@ -115,7 +112,6 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.pdfFormGroup.get('file'));
   }
 
   handleFileInput(files: FileList) {
@@ -152,7 +148,6 @@ export class ProjectDetailComponent implements OnInit {
   }
   logout() {
     sessionStorage.clear();
-    console.log('erase session', sessionStorage.getItem('email'));
     this.router.navigate(['/login']);
   }
 }
