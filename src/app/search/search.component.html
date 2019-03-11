@@ -1,25 +1,66 @@
 <app-navbar></app-navbar>
+
+<datalist id="projectNames">
+    <option *ngFor="let projectName of projectNames" value={{projectName}}></option>
+</datalist>   
+<datalist id="divisions">
+    <option *ngFor="let division of divisions" value={{division}}></option>
+</datalist>  
+<datalist id="lotIDs">
+    <option *ngFor="let lotId of lotIDs" value={{lotId}}></option>
+</datalist>  
+<datalist id="landUsers">
+    <option *ngFor="let landUser of landUsers" value={{landUser}}></option>
+</datalist>  
+<datalist id="mainProjectNames">
+    <option *ngFor="let mainProjectName of mainProjectNames" value={{mainProjectName}}></option>
+</datalist> 
+
 <div class="example-container">
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Project Name" [(ngModel)] = 'projectName'>
+        <input list="mainProjectNames" matInput placeholder="Main Project Name" [(ngModel)] = 'mainProjectName'>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Division" [(ngModel)] = 'division'>
+        <input matInput list="projectNames" placeholder="Project Name" [(ngModel)] = 'projectName'>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Lot ID" [(ngModel)] = 'lotID'>
+        <input matInput list="divisions" placeholder="Division" [(ngModel)] = 'division'>
     </mat-form-field>
     <mat-form-field class="example-full-width">
-        <input matInput placeholder="Land User" [(ngModel)] = 'landUser'>
+        <input matInput list="lotIDs" placeholder="Lot ID" [(ngModel)] = 'lotID'>
     </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput list="landUsers" placeholder="Land User" [(ngModel)] = 'landUser'>
+    </mat-form-field>
+    
     <mat-form-field style='margin-bottom: 2%'>
-        <mat-select placeholder="Send To(Next State)" [(ngModel)] = 'state'>
-          <mat-option value="option1">Option1</mat-option>
+        <mat-select placeholder="Current Stage" [(ngModel)] = 'state'>
           <mat-option value="Declaration of Sec. 5">Declaration of Sec. 5</mat-option>
-          <mat-option value="option3">Option3</mat-option>
+          <mat-option value="Prepare Gazette Under Sec. 5">Prepare Gazette Under Sec. 5</mat-option>
+          <mat-option value="Print Gazette Under Sec. 5">Print Gazette Under Sec. 5</mat-option>
+          <mat-option value="Survey request Under Sec. 6">Survey request Under Sec. 6</mat-option>
+          <mat-option value="Issued Preliminary Plan">Issued Preliminary Plan</mat-option>
+          <mat-option value="Prepare Gazette Under Sec. 7">Prepare Gazette Under Sec. 7</mat-option>
+          <mat-option value="Print Gazette Under Sec. 7">Print Gazette Under Sec. 7</mat-option>
+          <mat-option value="Conducting Sec. a Inquiries">Conducting Sec. a Inquiries</mat-option>
+          <mat-option value="10(1)(b) Decision">10(1)(b) Decision</mat-option>
+          <mat-option value="Court Decision">Court Decision</mat-option>
+          <mat-option value="Send to valuation">Send to valuation</mat-option>
+          <mat-option value="Issue valuation">Issue valuation</mat-option>
+          <mat-option value="Issue Sec.17 notice">Issue Sec.17 notice</mat-option>
+          <mat-option value="Take larc Decision">Take larc Decision</mat-option>
+          <mat-option value="Take action under sec. 33">Take action under sec. 33</mat-option>
+          <mat-option value="Registered under sec. 44">Registered under sec. 44</mat-option>
+          <mat-option value="Conducting Sec. a Inquiries">Conducting Sec. a Inquiries</mat-option>
+          <mat-option value="10(1)(a) Decision">10(1)(a) Decision</mat-option>
+          <mat-option value="Sec. 15 notice">Sec. 15 notice</mat-option>
+          <mat-option value="Do Collections">Do Collections</mat-option>
+          <mat-option value="Take super larc decision">Take super larc decision</mat-option>
+
         </mat-select>
     </mat-form-field>
     <div class="example-button-row">
         <button mat-raised-button color="primary" (click)='search()' >Search<mat-icon matSuffix>search</mat-icon></button>
     </div>
 </div>
+

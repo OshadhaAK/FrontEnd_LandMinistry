@@ -1,10 +1,17 @@
 <app-navbar></app-navbar>
 
+
+
 <div class="example-container">
+    <h2 class="form-signin-heading" style='text-align: center; margin-top: 1%'>Create Project</h2>
 <mat-form-field class="example-full-width">
   <input matInput placeholder="Project Name" [(ngModel)] = 'projectName'>
 </mat-form-field>
 <div class="example-button-row">
-    <button mat-raised-button color="primary" (click)="create()" ><mat-icon matSuffix>add</mat-icon>Create</button>
+    <button mat-raised-button color="primary" (click)="create()" ><mat-icon matSuffix>add</mat-icon>Create Main Project</button>
+</div>
+<hr>
+<div class="example-button-row">
+  <button mat-raised-button color="primary"  routerLink="/createproject" ><mat-icon matSuffix>add</mat-icon>Add sub Project</button>
 </div>
 </div>

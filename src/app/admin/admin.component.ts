@@ -37,6 +37,7 @@ export class AdminComponent implements OnInit {
     this.userID = sessionStorage.getItem('userID');
     this.email = sessionStorage.getItem('email');
     this.loginServeice.getPendingUsers().subscribe((data:any)=>{
+      console.log(data);
       this.detailSet = data.msg;
         
     });
@@ -151,8 +152,16 @@ export class AdminComponent implements OnInit {
 
     if(this.password===this.verifyPassword){
       this.loginServeice.createUser(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type).subscribe((data:any)=> {
-        this.flashMessageServie.show('Successfully Registered!', {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/login']);
+        if(data.success === true){
+          console.log(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type);
+          this.flashMessageServie.show('Account Created Succesfully!', {cssClass: 'alert-success', timeout: 3000});
+          this.router.navigate(['/search']);
+        }
+        else{
+            this.flashMessageServie.show('Error! Please check whether your email already exists', {cssClass: 'alert-danger', timeout: 3000});
+          
+        }
+        
       });
     }
     else{

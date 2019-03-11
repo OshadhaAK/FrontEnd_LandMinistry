@@ -26,8 +26,9 @@ export class CreateProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.search(this.projectName, this.division, this.landUser, this.lotID, null).subscribe(s => {
+    this.dataService.search(this.projectName, this.division, this.landUser, this.lotID, this.mainProjectName).subscribe(s => {
       if (s.success) {
+        console.log(s);
         s.msg.forEach(project => {
           this.projectNames.push(project.projectName);
           this.divisions.push(project.division);
@@ -37,6 +38,7 @@ export class CreateProjectComponent implements OnInit {
         });
       }
     })
+    console.log(this.mainProjectNames);
   }
   logout(){
     sessionStorage.clear();
@@ -68,4 +70,6 @@ export class CreateProjectComponent implements OnInit {
     }
 
   }
+
+  
 }

@@ -7,7 +7,7 @@
           <div class="example-button-row" style="align-content: left; width:65%; float:left;">
             Name: {{member.name}}<br>
             Email: {{member.email}}<br>
-            Tel_no.: {{member.telno}}<br>
+            Tel_no.: {{member.telephone}}<br>
           </div>
         
           <div class="example-button-row" style=" display: flex;float: right;">
@@ -35,7 +35,7 @@
         <div style="align-content: left; width:65%; float:left;">
             Name:{{member.name}}<br>
             Email:{{member.email}}<br>
-            Tel_no.:{{member.telno}}<br>
+            Tel_no.:{{member.telephone}}<br>
         </div>
         <div class="example-button-row " style="margin-top: 1%; display:flex ; float:right;">
             <button mat-raised-button color="warn" (click)="deletefromApprovedList(i)">Delete</button>
@@ -51,7 +51,7 @@
           <div style="align-content: left; width:65%; float:left;">
             Name:{{member.name}}<br>
             Email:{{member.email}}<br>
-            Tel_no.:{{member.telno}}<br>
+            Tel_no.:{{member.telephone}}<br>
           </div>
           <div class="example-button-row" style="margin-top: 1%; display:flex; float: right;">
             <button mat-raised-button color="warn" (click)="deletefromRejectedList(i)">Delete</button>
@@ -61,32 +61,7 @@
     </div>
   </mat-tab>
 
-
-  <mat-tab label="Search">
-    <div>
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Project Name">
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Division">
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Lot no.">
-        </mat-form-field>
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Land">
-        </mat-form-field>
-        <div>
-          <div class="example-button-row">
-            <button mat-raised-button color="primary" routerLink="." style="margin:3%; width: 70%;  float: left; margin-left: 10%;">Search<mat-icon matSuffix>search</mat-icon></button>
-          </div>  
-            <button mat-mini-fab color="primary" routerLink="/createproject" style="margin:3%; float: right;"><mat-icon matSuffix>addition</mat-icon></button>
-        </div>
-    </form>
-    </div>
-  </mat-tab>
-
+  
   <mat-tab label="Create Account">
     <div class="example-container">
         <mat-form-field class="example-full-width">
@@ -132,8 +107,8 @@
         <br>
         <mat-form-field style='margin-bottom: 2%' class="example-full-width">
           <mat-select placeholder="User Type" [(ngModel)] = 'user_type'>
-            <mat-option value="admin">admin</mat-option>
-            <mat-option value="user">user</mat-option>
+            <mat-option value="admin">Admin</mat-option>
+            <mat-option value="user">User</mat-option>
             
           </mat-select>
         </mat-form-field>
