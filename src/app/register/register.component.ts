@@ -16,8 +16,8 @@ export class RegisterComponent implements OnInit {
   emailaddress: string;
   password: string;
   telno: number;
-  category: string;
-  user_type:string;
+  category: string="Ministry of Land";
+  user_type:string="admin";
   verifyPassword : string;
   constructor(private loginServeice : LoginServiceService, private router: Router, private flashMessageServie: FlashMessagesService) { }
   
@@ -36,8 +36,15 @@ export class RegisterComponent implements OnInit {
 
     if(this.password===this.verifyPassword){
       this.loginServeice.createUser(this.emailaddress,this.telno,this.name,this.password,this.category,this.user_type).subscribe((data:any)=> {
-        this.flashMessageServie.show('Successfully Registered!', {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/login']);
+        if(data.success === true){
+          this.flashMessageServie.show('Successfully Registered!', {cssClass: 'alert-success', timeout: 3000});
+          this.router.navigate(['/login']);
+        }
+        else{
+            this.flashMessageServie.show('Error! Please check whether your email already exists', {cssClass: 'alert-danger', timeout: 3000});
+          
+        }
+        
       });
     }
     else{

@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   userID: string ;
   userEmail:string;
   user : any;
+  approvalStatus:string;
   email = new FormControl('', [Validators.required, Validators.email]);
 
    getErrorMessage() {
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('userID',this.userID);
           sessionStorage.setItem('email',this.user.email);
           sessionStorage.setItem('category',this.user.category);
+          sessionStorage.setItem('user_type',this.user.user_type)
           
           if(data.msg[2].user_type[0]==="user" && data.msg[2].approvalStatus[0]==="approved"){
             this.router.navigateByUrl('/search');

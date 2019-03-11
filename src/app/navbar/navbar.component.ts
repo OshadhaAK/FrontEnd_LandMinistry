@@ -7,8 +7,20 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   email : string;
+  category:string;
+  user_type:string;
+  showCreate:boolean=false;
+  setAdminAsHome:boolean=false;
   constructor(private router : Router) {
     this.email = sessionStorage.getItem('email');
+    this.category = sessionStorage.getItem('category');
+    if(this.category==="Ministry of Land"){
+      this.showCreate=true;
+    }
+    this.user_type = sessionStorage.getItem('user_type');
+    if(this.user_type==="admin"){
+      this.setAdminAsHome=true;
+    }
    }
 
   ngOnInit() {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CanActivate , Router } from '@angular/router';
 import { DataService } from '../data.service';
 import { MainProjectService } from '../services/main-project.service';
-
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-create-main-project',
@@ -12,7 +12,7 @@ import { MainProjectService } from '../services/main-project.service';
 export class CreateMainProjectComponent implements OnInit {
   projectName:string;
   userID:any;
-  constructor(private dataService: DataService,private router: Router, private mainProjectService: MainProjectService) { 
+  constructor(private dataService: DataService,private router: Router, private mainProjectService: MainProjectService,private flashMessageServie : FlashMessagesService) { 
     this.userID = sessionStorage.getItem('email');
   }
 
@@ -29,8 +29,11 @@ export class CreateMainProjectComponent implements OnInit {
       console.log(s);
       if (s.success) {
         // do project create notification
+        this.flashMessageServie.show('Main Project Created Succesfully.Please add your sub projects', {cssClass: 'alert-success', timeout: 3000})
+        this.router.navigate(['/createproject']);
       } else {
         // show error
+        this.flashMessageServie.show(s.msg, {cssClass: 'alert-danger', timeout: 3000})
       }
     });
   }

@@ -2,7 +2,7 @@
 
 <div class="example-container">
   <h2 class="form-signin-heading" style='text-align: center; margin-top: 1%'>Search Results</h2>
-  <table class="table" >
+  <table class="table" style="width: 100%; table-layout: fixed; overflow: auto; margin-left: 0%;" >
     <th>#</th>
     <th >Main Project Name</th>
     <th> project Name </th>
@@ -10,8 +10,8 @@
     <th> Land User </th>
     <th> State </th>
     <tbody>
-    <tr>
-        <td>
+    <tr style="border:5px;">
+        <td style="word-wrap:break-word;">
             <button *ngFor= "let project of projects;let i=index" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{i+1}} </button>
         </td>
         <td>
@@ -26,48 +26,15 @@
         <td>
             <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.landUser}} </button>
         </td>
-        <td>
+        <td style="word-wrap:break-word;">
             <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.state}} </button>
         </td>
     </tr>
-      <!--
-    <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" ><td>{{project.mainProjectName}} </td> &nbsp;&nbsp;&nbsp;<td>{{project.projectName}}</td>&nbsp;&nbsp;&nbsp;{{project.lotId}} &nbsp;&nbsp;&nbsp; {{project.landUser}} &nbsp;&nbsp;&nbsp; {{project.state}}</button>
-    -->
    
   </tbody>
   </table>
 
-  <!--
-  <mat-table  [dataSource]="dataSource">
-    
-    <ng-container matColumnDef="number">
-      <th mat-header-cell *matHeaderCellDef>#</th>
-      <td mat-cell *matCellDef="let row">{{row.mainProjectName}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef>Title</th>
-      <td mat-cell *matCellDef="let row">{{row.title}}</td>
-    </ng-container>
-
-    
-    <ng-container matColumnDef="state">
-      <th mat-header-cell *matHeaderCellDef>State</th>
-      <td mat-cell *matCellDef="let row">{{row.state}}</td>
-    </ng-container>
-
-    
-    <ng-container matColumnDef="created">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
-        Created
-      </th>
-      <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   
--->
 </div>
   
 

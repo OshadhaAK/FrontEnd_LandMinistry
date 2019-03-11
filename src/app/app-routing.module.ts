@@ -13,6 +13,7 @@ import { CreateMainProjectComponent } from './create-main-project/create-main-pr
 
 import { SearchResultComponent } from './search-result/search-result.component';
 import { RouteGuardGuard } from "./route-guard.guard";
+import { AdminGuard } from "./admin.guard";
 const routes: Routes = [
   {
     path: 'login',
@@ -31,7 +32,7 @@ const routes: Routes = [
     /* todo make sure only admins can goto admin*/ 
     path: 'admin',
     component: AdminComponent,
-    canActivate : [RouteGuardGuard]
+    canActivate : [AdminGuard,RouteGuardGuard]
   },
   {
     path: 'createproject',
