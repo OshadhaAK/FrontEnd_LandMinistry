@@ -6,7 +6,7 @@
     <mat-card *ngFor="let file of projectFiles; let i = index " class="card" (click)="onFileClick(i)">
       {{file.fileName}}
     </mat-card>
-    <section *ngIf="!stageApproved">
+    <section *ngIf="!stageApproved && hasPermission">
         Approve:
         <mat-slide-toggle
         class="example-margin"

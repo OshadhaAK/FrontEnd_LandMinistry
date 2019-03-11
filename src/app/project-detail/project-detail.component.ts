@@ -7,6 +7,7 @@ import { FlashMessagesService } from 'angular2-flash-messages';
 import { ProjectData } from '../project-data';
 import { FileInfo } from '../file-info';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { LoginServiceService } from 'src/services/login-service.service';
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
@@ -14,6 +15,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 })
 export class ProjectDetailComponent implements OnInit {
   state = 'switch';
+  hasPermission = false;
   stageApproved = false;
   currentState: string;
   currentStageInput: string;
@@ -35,7 +37,7 @@ export class ProjectDetailComponent implements OnInit {
               private dataService: DataService,
               private falshMessageService: FlashMessagesService,
               private formBuilder: FormBuilder,
-              private cd: ChangeDetectorRef) {
+              private loginServie: LoginServiceService) {
 
     this.userID = sessionStorage.getItem('email');
    }
@@ -75,6 +77,8 @@ export class ProjectDetailComponent implements OnInit {
           this.dataService.getStageInfo(stage).subscribe(msg => {
             if (msg.success) {
               this.currentStageInput = msg.msg.option;
+              console.log(msg.msg.permission)
+              this.hasPermission = this.loginServie.getUserType() === msg.msg.permission;
             }
           });
         }
