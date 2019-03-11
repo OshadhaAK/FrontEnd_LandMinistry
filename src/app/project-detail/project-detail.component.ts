@@ -93,11 +93,12 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   onApprove() {
-    console.log('approved');
+    
+    this.falshMessageService.show('Current stage approved', {cssClass: 'alert-success', timeout: 3000});
     this.stageApproved = true;
   }
 
-  currentStageApprove(){
+  currentStageApprove() {
     this.readyToSend = true;
   }
 
@@ -119,14 +120,31 @@ export class ProjectDetailComponent implements OnInit {
     this.readyToSend = true;
 }
 
+  _sendtoNextStage() {
+    this.dataService.sendToNextStage(this.projectID, this.nextStage).subscribe(r => {
+      if (r.success) {
+        // reload the page
+        this.falshMessageService.show('Project send to next stage', {cssClass: 'alert-success', timeout: 3000});
+        this.router.navigate(['/projectdetails', this.projectID]);
+      } else {
+        this.falshMessageService.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+      }
+    });
+  }
 
-
-  sendToNextStage(){
+  sendToNextStage() {
     console.log(this.nextStage);
     if (this.currentStageInput === 'pdf') {
       this.fileService.uploadFile(this.projectID, this.fileToUpload).subscribe(res => {
-        console.log('res',res)
+        if (res.success) {
+          // send to next stage
+          this._sendtoNextStage()
+        } else {
+          this.falshMessageService.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+        }
       });
+    } else if(this.currentStageInput === 'boolean') {
+      this._sendtoNextStage()
     }
   }
   logout() {

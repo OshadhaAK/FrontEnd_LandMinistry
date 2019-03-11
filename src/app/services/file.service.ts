@@ -11,11 +11,11 @@ export class FileService {
   url = 'http://localhost:3301/files';
   constructor(private http: HttpClient) { }
 
-  uploadFile(projectId, file) {
+  uploadFile(projectId, file): Observable<BackendMessage> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     formData.append('projectId', projectId);
-    return this.http.post(`${this.url}/uploadFile`, formData);
+    return this.http.post(`${this.url}/uploadFile`, formData) as Observable<BackendMessage>;
   }
 
   getProjectFiles(projectId): Observable<BackendMessage> {

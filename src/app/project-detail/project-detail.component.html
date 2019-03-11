@@ -18,7 +18,7 @@
         
       </mat-slide-toggle>
     </section> 
-    <div *ngIf="stageApproved">        
+    <div *ngIf="stageApproved" style="padding: 5%">        
         <section *ngIf="currentStageInput == 'boolean'">
             {{currentProject.state}}:
             <mat-slide-toggle
@@ -27,7 +27,7 @@
             [checked]="checked"
             [disabled]="disabled"
             style="float: right;"
-            (click)="onApprove()">            
+            (click)="currentStageApprove()">            
           </mat-slide-toggle>
         </section> 
         <div *ngIf="currentStageInput == 'pdf'" class="form-group">

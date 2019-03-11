@@ -76,11 +76,11 @@ export class DataService {
     return this.http.get(`${this.url}/stateById`, {params}) as Observable<BackendMessage>;
   }
 
-  sendToNextStage(projectId, nextStage) {
+  sendToNextStage(projectId, nextStage): Observable<BackendMessage> {
     const params = {
       projectId,
       nextStage
     };
-    return this.http.post(`${this.url}/sendToNextStage`, params);
+    return this.http.post(`${this.url}/sendToNextStage`, params) as Observable<BackendMessage>;
   }
 }
