@@ -93,7 +93,6 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   onApprove() {
-    
     this.falshMessageService.show('Current stage approved', {cssClass: 'alert-success', timeout: 3000});
     this.stageApproved = true;
   }
