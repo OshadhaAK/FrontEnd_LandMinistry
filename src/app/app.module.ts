@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatInputModule, MatIconModule,MatDialogModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatInputModule, MatIconModule, MatDialogModule} from '@angular/material';
 import 'hammerjs';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -16,14 +16,13 @@ import { RegisterComponent } from './register/register.component';
 import { SearchComponent } from './search/search.component';
 import { DataService } from './data.service';
 import { MainProjectService } from './services/main-project.service';
-import { LoginServiceService } from "../services/login-service.service";
+import { LoginServiceService } from '../services/login-service.service';
 import { FileService } from './services/file.service';
 import { AdminComponent } from './admin/admin.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
 import { ChangepasswordComponent } from './changepassword/changepassword.component';
-
 
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { TokenInterceptor } from '../services/tokenInterceptor';
@@ -34,7 +33,7 @@ import { CreateMainProjectComponent } from './create-main-project/create-main-pr
 import { SearchResultComponent } from './search-result/search-result.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-import { RouteGuardGuard  } from "./route-guard.guard";
+import { RouteGuardGuard  } from './route-guard.guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +56,7 @@ import { RouteGuardGuard  } from "./route-guard.guard";
     AppRoutingModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
     FormsModule,
@@ -68,7 +67,7 @@ import { RouteGuardGuard  } from "./route-guard.guard";
     HttpClientModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [DataService,FileService,
+  providers: [DataService, FileService,
     LoginServiceService,
     MainProjectService,
     RouteGuardGuard,

@@ -16,6 +16,9 @@ export class LoginServiceService {
   public getUID() {
     return sessionStorage.getItem('userID');
   }
+  public getUserType() {
+    return sessionStorage.getItem('category');
+  }
 
   /* POST FUNCTIONS */
   login(email : string, password : string){
