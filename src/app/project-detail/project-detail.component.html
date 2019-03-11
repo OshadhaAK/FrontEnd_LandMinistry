@@ -1,23 +1,54 @@
 <app-navbar></app-navbar>
 
-<div class="container">
-    <mat-card class="card" *ngIf='state==="switch"'>
-      <mat-slide-toggle
-      class="example-margin"
-      [color]="color"
-      [checked]="checked"
-      [disabled]="disabled"
-      style="float: right;">
-    
-    </mat-slide-toggle>
-      
-    details:
+<div class="container" style="width: 75%">
+  <h1>{{currentProject.projectName}}</h1>
+  <h5>{{currentProject.state}}</h5>
+    <mat-card *ngFor="let file of projectFiles; let i = index " class="card" (click)="onFileClick(i)">
+      {{file.fileName}}
     </mat-card>
-    <mat-card class="card" *ngIf='state==="fileupload"'>
-        details:
-        <input id="fileInput" type="file" class="ng-hide">
+    <section *ngIf="!stageApproved">
+        Approve:
+        <mat-slide-toggle
+        class="example-margin"
+        [color]="color"
+        [checked]="checked"
+        [disabled]="disabled"
+        style="float: right;"
+        (click)="onApprove()">
         
-      
-      </mat-card>
-    
+      </mat-slide-toggle>
+    </section> 
+    <div *ngIf="stageApproved">        
+        <section *ngIf="currentStageInput == 'boolean'">
+            {{currentProject.state}}:
+            <mat-slide-toggle
+            class="example-margin"
+            [color]="color"
+            [checked]="checked"
+            [disabled]="disabled"
+            style="float: right;"
+            (click)="onApprove()">            
+          </mat-slide-toggle>
+        </section> 
+        <div *ngIf="currentStageInput == 'pdf'" class="form-group">
+            <label for="file">Choose File: </label>
+            <input type="file"
+              accept=".pdf"
+              id="file"
+              (change)="handleFileInput($event.target.files)"
+            >
+        </div>
+        
+        <section>
+            <h4>Next stage:</h4>
+            <mat-form-field>
+              <select matNativeControl required [(ngModel)]="nextStage">
+                <option *ngFor="let stage of nextStages" [value]="stage">{{stage}}</option>
+              </select>
+            </mat-form-field>
+        </section>
+
+        <button [disabled]="!readyToSend" (click)="sendToNextStage()">Send to Next Stage</button>
+        
+    </div>
 </div>

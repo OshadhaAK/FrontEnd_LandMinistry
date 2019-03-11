@@ -24,6 +24,12 @@ export class DataService {
     return this.http.post(`${this.url}/createProject`, params);
   }
 
+  getProjectInfo(projectId): Observable<BackendMessage> {
+    let params = new HttpParams();
+    params = params.append('projectId', projectId);
+    return this.http.get(`${this.url}/getProjectInfo`, {params}) as Observable<BackendMessage>;
+  }
+
   getNextStage(projectId): Observable<BackendMessage> {
     let params = new HttpParams();
     params = params.append('projectId', projectId);
