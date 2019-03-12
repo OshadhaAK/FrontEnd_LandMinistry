@@ -11,12 +11,17 @@ import {MatTableModule, MatTableDataSource} from '@angular/material/table';
 })
 export class SearchResultComponent implements OnInit {
   projects: any;
-  dataSource: any;
+  
+  noData:boolean=false ;
   constructor(private router: Router, private dataService: DataService, private flashMessageServie: FlashMessagesService) { }
 
   ngOnInit() {
     this.projects = this.dataService.getSearchResults();
-    this.dataSource = new MatTableDataSource(this.projects);
+    console.log(this.projects);
+    if (this.projects === undefined || this.projects.length == 0) {
+      this.noData=true;
+  }
+   
   }
   logout() {
     sessionStorage.clear();
@@ -24,8 +29,9 @@ export class SearchResultComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  openProject(event: any) {
-    const projectId = event.target.value;
+  openProject(i: number) {
+    console.log("clicked");
+    const projectId = this.projects[i].projectId;
     console.log(projectId);
     this.router.navigate(['/projectdetails', projectId]);
     /*Open the project page by using project ID*/

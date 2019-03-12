@@ -50,7 +50,7 @@ export class DataService {
     return JSON.parse(sessionStorage.getItem('search-results'));
   };
 
-  search(projectName, division, landUser, lotId, state): Observable<BackendMessage> {
+  search(projectName, division, landUser, lotId, state,mainProjectName): Observable<BackendMessage> {
     let params = new HttpParams();
     if (projectName != null) {
       params = params.append('projectName', projectName);
@@ -67,9 +67,21 @@ export class DataService {
     if (state != null) {
       params = params.append('state', state);
     }
+    if (mainProjectName != null) {
+      params = params.append('mainProjectName', mainProjectName);
+    }
     return this.http.get(`${this.url}/search`, {params}) as Observable<BackendMessage>;
   }
 
+  searchMainProject(mainProjectName){
+    let params = new HttpParams();
+    if (mainProjectName != null) {
+      params = params.append('mainProjectName', mainProjectName);
+    }
+    return this.http.get(`${this.url}/searchMainProject`, {params}) as Observable<BackendMessage>;
+  }
+
+  
   
   getProjectStage(projectId): Observable<BackendMessage> {
     let params = new HttpParams();

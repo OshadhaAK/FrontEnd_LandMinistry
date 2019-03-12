@@ -1,39 +1,23 @@
 <app-navbar></app-navbar>
 
 <div class="example-container">
-  <h2 class="form-signin-heading" style='text-align: center; margin-top: 1%'>Search Results</h2>
-  <table class="table" style="width: 100%; table-layout: fixed; overflow: auto; margin-left: 0%;" >
-    <th>#</th>
-    <th >Main Project Name</th>
-    <th> project Name </th>
-    <th> Lot ID </th>
-    <th> Land User </th>
-    <th> State </th>
-    <tbody>
-    <tr style="border:5px;">
-        <td style="word-wrap:break-word;">
-            <button *ngFor= "let project of projects;let i=index" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{i+1}} </button>
-        </td>
-        <td>
-        <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.mainProjectName}} </button>
-        </td>
-        <td>
-            <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.projectName}} </button>
-        </td>
-        <td>
-          <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.lotId}} </button>
-        </td>
-        <td>
-            <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.landUser}} </button>
-        </td>
-        <td style="word-wrap:break-word;">
-            <button *ngFor= "let project of projects" (click)="openProject($event)" value="{{project.projectId}}" class="list-group-item list-group-item-action" >{{project.state}} </button>
-        </td>
-    </tr>
-   
-  </tbody>
-  </table>
 
+  <div style="border:10px;">
+      <h2 class="form-signin-heading" style='text-align: center; margin-top: 1%'>Search Results</h2>
+      <div>
+        <h5 class="form-signin-heading" style='text-align: center; margin-top: 1%' *ngIf="noData">No projects found</h5>
+      </div>  
+      <mat-card class="card" *ngFor="let project of projects;let i=index;" (click)="openProject(i)" style=" display: flex;">
+          <div class="example-button-row" style="align-content: left; width:100%; border:10px; float:left;">
+              <div style="display: inline-block; width: 5%;" >{{i+1}}</div>
+              <div style="display: inline-block; width: 20%;" >{{project.mainProjectName}}</div>
+              <div style="display: inline-block; width: 20%;" >{{project.projectName}}</div>
+              <div style="display: inline-block; width: 10%;" >{{project.lotId}}</div>
+              <div style="display: inline-block; width: 20%;" >{{project.landUser}}</div>
+              <div style="display: inline-block; width: 25%;" >{{project.state}}</div>
+          </div>
+      </mat-card>
+  </div>
   
 </div>
   

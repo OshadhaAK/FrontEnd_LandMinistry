@@ -19,6 +19,7 @@ export class SearchComponent implements OnInit {
   lotID: any = null;
   landUser: any = null;
   state: any = null;
+  mainProjectName :any = null;
   searchResults: ProjectData[] = [];
 
   projectNames = [];
@@ -32,7 +33,8 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.dataService.search(this.projectName, this.division, this.landUser, this.lotID, null).subscribe(s => {
+    
+    this.dataService.search(this.projectName, this.division, this.landUser, this.lotID, this.state,this.mainProjectName).subscribe(s => {
       if (s.success) {
         s.msg.forEach(project => {
           this.projectNames.push(project.projectName);
@@ -42,7 +44,15 @@ export class SearchComponent implements OnInit {
           this.mainProjectNames.push(project.mainProjectName);
         });
       }
-    })
+    });
+    this.dataService.searchMainProject(this.mainProjectName).subscribe(s=>{
+      if(s.success){
+        console.log(s);
+        s.msg.forEach(project =>{
+          this.mainProjectNames.push(project.projectName);
+        })
+      }
+    });
   }
   logout() {
     sessionStorage.clear();
@@ -50,7 +60,10 @@ export class SearchComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   search() {
-    this.dataService.search(this.projectName, this.division, this.landUser, this.lotID, this.state).subscribe(s => {
+    if(this.state==="none"){
+      this.state=null;
+    }
+    this.dataService.search(this.projectName, this.division, this.landUser, this.lotID, this.state,this.mainProjectName).subscribe(s => {
       
       if (s.success) {
         for (const element of s.msg) {
