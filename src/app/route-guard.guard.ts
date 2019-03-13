@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginServiceService } from "../services/login-service.service";
 
@@ -9,7 +9,7 @@ import { LoginServiceService } from "../services/login-service.service";
 export class RouteGuardGuard implements CanActivate, CanActivateChild, CanLoad {
 
   accessible : boolean = false;
-  constructor (private loginService : LoginServiceService){
+  constructor (private loginService: LoginServiceService, private router: Router){
 
   }
   canActivate(
@@ -17,8 +17,8 @@ export class RouteGuardGuard implements CanActivate, CanActivateChild, CanLoad {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(this.loginService.getAuthToken()){
         return true;
-      }
-      else{
+      } else {
+        this.router.navigate(['/login'])
         return false;
       }
       /*this.loginService.verifyUser(this.loginService.getAuthToken()).subscribe((data:any)=>{

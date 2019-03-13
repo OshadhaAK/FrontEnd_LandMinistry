@@ -20,6 +20,10 @@ export class LoginServiceService {
     return sessionStorage.getItem('category');
   }
 
+  public isAdmin() {
+    return sessionStorage.getItem('user_type') === 'admin';
+  }
+
   /* POST FUNCTIONS */
   login(email : string, password : string){
     const params ={

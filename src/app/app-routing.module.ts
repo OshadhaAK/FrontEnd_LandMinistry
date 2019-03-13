@@ -16,6 +16,10 @@ import { RouteGuardGuard } from "./route-guard.guard";
 import { AdminGuard } from "./admin.guard";
 const routes: Routes = [
   {
+    path: '',
+    component: LoginComponent
+  },
+  {
     path: 'login',
     component: LoginComponent
   },
