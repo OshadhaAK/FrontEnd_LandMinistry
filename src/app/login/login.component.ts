@@ -52,6 +52,8 @@ export class LoginComponent implements OnInit {
 
         if (data.success) {
           console.log(data);
+          console.log(data.msg[2].user_type[0]);
+          
           this.userID = data.msg[0];
           this.accessToken = data.msg[1];
           this.user = data.msg[2];
@@ -67,6 +69,7 @@ export class LoginComponent implements OnInit {
           } else if (data.msg[2].user_type[0] === 'admin' && data.msg[2].approvalStatus[0] === 'approved') {
             this.router.navigateByUrl('/admin');
           } else if (data.msg[2].user_type[0] === 'sudo') {
+            console.log("done");
             this.router.navigateByUrl('/admin');
           } else if (data.msg[2].approvalStatus[0] === 'pending') {
             this.flashMessageService.show('Your account is still pending approval', {cssClass: 'alert-danger', timeout: 3000});
