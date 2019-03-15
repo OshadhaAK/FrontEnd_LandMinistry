@@ -143,15 +143,22 @@ export class ProjectDetailComponent implements OnInit {
       this.fileService.uploadFile(this.projectID, this.fileToUpload).subscribe(res => {
         if (res.success) {
           // send to next stage
-          this._sendtoNextStage()
+          this._sendtoNextStage();
         } else {
           this.falshMessageService.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
         }
       });
     } else if (this.currentStageInput === 'boolean') {
-      this._sendtoNextStage()
-    } else if (this.currentStageInput === 'typing'){
-      console.log(this.amount);
+      this._sendtoNextStage();
+    } else if (this.currentStageInput === 'typing') {
+      this.dataService.enterPaymentData(this.projectID, this.amount).subscribe(res => {
+        if (res.success) {
+          // send to next stage
+          this._sendtoNextStage();
+        } else {
+          this.falshMessageService.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+        }
+      });
     }
   }
   logout() {

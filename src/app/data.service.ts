@@ -24,6 +24,14 @@ export class DataService {
     return this.http.post(`${this.url}/createProject`, params);
   }
 
+  enterPaymentData(projectId, amount) : Observable<BackendMessage> {
+    const params = {
+      projectId,
+      amount
+    };
+    return this.http.post(`${this.url}/enterPayemtInfo`, params) as Observable<BackendMessage>;
+  }
+
   getProjectInfo(projectId): Observable<BackendMessage> {
     let params = new HttpParams();
     params = params.append('projectId', projectId);
