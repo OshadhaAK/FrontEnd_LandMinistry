@@ -27,6 +27,7 @@ export class ProjectDetailComponent implements OnInit {
   projectID: any;
   fileToUpload: File = null;
   readyToSend = false;
+  amount = 0;
 
   pdfFormGroup = this.formBuilder.group({
     file: [null, Validators.required]
@@ -77,8 +78,8 @@ export class ProjectDetailComponent implements OnInit {
           this.dataService.getStageInfo(stage).subscribe(msg => {
             if (msg.success) {
               this.currentStageInput = msg.msg.option;
+              console.log(this.currentStageInput)
               this.hasPermission = this.loginServie.getUserType() === msg.msg.permission;
-              console.log(msg.msg.permission)
             }
           });
         }
@@ -102,6 +103,10 @@ export class ProjectDetailComponent implements OnInit {
 
   currentStageApprove() {
     this.readyToSend = !this.readyToSend;
+  }
+
+  valueChange() {
+    this.readyToSend = (this.amount > 0);
   }
 
   changeNext(i){
@@ -143,8 +148,10 @@ export class ProjectDetailComponent implements OnInit {
           this.falshMessageService.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
         }
       });
-    } else if(this.currentStageInput === 'boolean') {
+    } else if (this.currentStageInput === 'boolean') {
       this._sendtoNextStage()
+    } else if (this.currentStageInput === 'typing'){
+      console.log(this.amount);
     }
   }
   logout() {

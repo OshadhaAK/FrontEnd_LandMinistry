@@ -38,6 +38,14 @@
               (change)="handleFileInput($event.target.files)"
             >
         </div>
+        <div *ngIf="currentStageInput == 'typing'" class="form-group">
+          <label for="amount">Amount: </label>
+          <input type="number"
+            id="amount"
+            [(ngModel)]="amount"
+            (change)="valueChange()"
+          >
+      </div>
         
         <section>
             <h4>Next stage:</h4>
