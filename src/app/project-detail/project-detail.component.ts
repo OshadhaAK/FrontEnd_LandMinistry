@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ɵConsole } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import { FileService } from '../services/file.service';
 import { switchMap } from 'rxjs/operators';
@@ -78,6 +78,7 @@ export class ProjectDetailComponent implements OnInit {
             if (msg.success) {
               this.currentStageInput = msg.msg.option;
               this.hasPermission = this.loginServie.getUserType() === msg.msg.permission;
+              console.log(msg.msg.permission)
             }
           });
         }
@@ -100,7 +101,7 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   currentStageApprove() {
-    this.readyToSend = true;
+    this.readyToSend = !this.readyToSend;
   }
 
   changeNext(i){
@@ -124,7 +125,7 @@ export class ProjectDetailComponent implements OnInit {
       if (r.success) {
         // reload the page
         this.falshMessageService.show('Project send to next stage', {cssClass: 'alert-success', timeout: 3000});
-        this.router.navigate(['/projectdetails', this.projectID]);
+        window.location.reload();
       } else {
         this.falshMessageService.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
       }

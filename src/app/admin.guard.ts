@@ -11,7 +11,7 @@ export class AdminGuard implements CanActivate, CanActivateChild, CanLoad {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       this.user_type=sessionStorage.getItem("user_type");
-      if(this.user_type==="admin"){
+      if(this.user_type==="admin" || this.user_type==="sudo"){
         return true;
       }
       else{

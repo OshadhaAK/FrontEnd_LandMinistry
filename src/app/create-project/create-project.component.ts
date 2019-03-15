@@ -57,7 +57,7 @@ export class CreateProjectComponent implements OnInit {
   }
   create(){
     if (this.projectName === '' || this.projectName === null || this.division === '' || this.division == null  || this.lotID === '' || this.lotID == null || this.landUser === '' || this.landUser == null) {
-      this.flashMessageServie.show('Please Enter Project Details', {cssClass: 'alert-success', timeout: 3000});
+      this.flashMessageServie.show('Please Enter Project Details', {cssClass: 'alert-danger', timeout: 3000});
       
       this.router.navigate(['/createproject']);
     }
