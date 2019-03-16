@@ -27,6 +27,8 @@ export class ProjectDetailComponent implements OnInit {
   projectID: any;
   fileToUpload: File = null;
   readyToSend = false;
+  amount = 0;
+  finalStage = false;
 
   pdfFormGroup = this.formBuilder.group({
     file: [null, Validators.required]
@@ -74,24 +76,29 @@ export class ProjectDetailComponent implements OnInit {
         if (res.success) {
           const stage = res.msg;
           this.currentState = stage;
-          this.dataService.getStageInfo(stage).subscribe(msg => {
-            if (msg.success) {
-              this.currentStageInput = msg.msg.option;
-              this.hasPermission = this.loginServie.getUserType() === msg.msg.permission;
-              console.log(msg.msg.permission)
-            }
-          });
+          if (this.currentState !== 'Complete'){
+            this.dataService.getStageInfo(stage).subscribe(msg => {
+              if (msg.success) {
+                this.currentStageInput = msg.msg.option;
+                this.hasPermission = this.loginServie.getUserType() === msg.msg.permission;
+              }
+            });
+            // get the next stage
+            this.dataService.getNextStage(this.projectID).subscribe(msg => {
+              if (msg.success) {
+                this.nextStages = msg.msg;
+                this.nextStage = `${this.nextStages[0]}`;
+              } else {
+                this.falshMessageService.show('Something went wrong!', {cssClass: 'alert-danger', timeout: 3000});
+              }
+            });
+          } else {
+            this.finalStage = true;
+          }
+          
         }
       });
-      // get the next stage
-      this.dataService.getNextStage(this.projectID).subscribe(msg => {
-        if (msg.success) {
-          this.nextStages = msg.msg;
-          this.nextStage = `${this.nextStages[0]}`;
-        } else {
-          this.falshMessageService.show('Something went wrong!', {cssClass: 'alert-danger', timeout: 3000});
-        }
-      });
+      
     });
   }
 
@@ -102,6 +109,10 @@ export class ProjectDetailComponent implements OnInit {
 
   currentStageApprove() {
     this.readyToSend = !this.readyToSend;
+  }
+
+  valueChange() {
+    this.readyToSend = (this.amount > 0);
   }
 
   changeNext(i){
@@ -138,13 +149,22 @@ export class ProjectDetailComponent implements OnInit {
       this.fileService.uploadFile(this.projectID, this.fileToUpload).subscribe(res => {
         if (res.success) {
           // send to next stage
-          this._sendtoNextStage()
+          this._sendtoNextStage();
         } else {
           this.falshMessageService.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
         }
       });
-    } else if(this.currentStageInput === 'boolean') {
-      this._sendtoNextStage()
+    } else if (this.currentStageInput === 'boolean') {
+      this._sendtoNextStage();
+    } else if (this.currentStageInput === 'typing') {
+      this.dataService.enterPaymentData(this.projectID, this.amount).subscribe(res => {
+        if (res.success) {
+          // send to next stage
+          this._sendtoNextStage();
+        } else {
+          this.falshMessageService.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+        }
+      });
     }
   }
   logout() {
