@@ -120,7 +120,7 @@ export class ProjectDetailComponent implements OnInit {
 
   onFileClick(id) {
     const file = this.projectFiles[id];
-    window.open(`http://localhost:3301/files/file?fileId=${file.fileId}`, '_blank');
+    window.open(`http://18.136.15.127:3301/files/file?fileId=${file.fileId}`, '_blank');
   }
 
   onSubmit() {

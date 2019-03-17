@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class MainProjectService {
 
-  creatProjectEndpoint = 'http://localhost:3301/projects/createMainProject';
+  creatProjectEndpoint = 'http://18.136.15.127:3301/projects/createMainProject';
 
   constructor(private http: HttpClient) { }
 
