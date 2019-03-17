@@ -8,7 +8,7 @@ import { ProjectData } from './project-data';
   providedIn: 'root'
 })
 export class DataService {
-  url = 'http://localhost:3301/projects';
+  url = 'http://18.136.15.127:3301/projects';
 
   searchResults = new BehaviorSubject<Array<ProjectData>>(null);
   constructor(private http: HttpClient) { }

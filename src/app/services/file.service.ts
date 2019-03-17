@@ -8,7 +8,7 @@ import { BackendMessage } from '../backend-message';
 })
 export class FileService {
 
-  url = 'http://localhost:3301/files';
+  url = 'http://18.136.15.127:3301/files';
   constructor(private http: HttpClient) { }
 
   uploadFile(projectId, file): Observable<BackendMessage> {
