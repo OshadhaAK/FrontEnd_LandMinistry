@@ -13,13 +13,14 @@ export class DataService {
   searchResults = new BehaviorSubject<Array<ProjectData>>(null);
   constructor(private http: HttpClient) { }
 
-  createProject(projectName, division, landUser, lotId, mainProjectName) {
+  createProject(projectName, division, landUser, lotId, mainProjectName, preliminaryPlan) {
     const params = {
       projectName,
       division,
       landUser,
       lotNo: lotId,
-      mainProjectName
+      mainProjectName,
+      preliminaryPlan
     };
     return this.http.post(`${this.url}/createProject`, params);
   }
