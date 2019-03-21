@@ -14,6 +14,7 @@ export class CreateProjectComponent implements OnInit {
   landUser: any = null;
   mainProjectName: string = null;
   userID: any = null;
+  preliminaryPlan: string = null;
 
   projectNames = [];
   divisions = [];
@@ -21,7 +22,7 @@ export class CreateProjectComponent implements OnInit {
   landUsers = [];
   mainProjectNames = [];
 
-  constructor(private dataService: DataService,private router: Router, private flashMessageServie: FlashMessagesService) { 
+  constructor(private dataService: DataService, private router: Router, private flashMessageServie: FlashMessagesService) {
     this.userID = sessionStorage.getItem('email');
   }
 
@@ -39,41 +40,50 @@ export class CreateProjectComponent implements OnInit {
       }
     });
 
-    this.dataService.searchMainProject(this.mainProjectName).subscribe(s=>{
-      if(s.success){
+    this.dataService.searchMainProject(this.mainProjectName).subscribe(s => {
+      if (s.success) {
         console.log(s);
-        s.msg.forEach(project =>{
+        s.msg.forEach(project => {
           this.mainProjectNames.push(project.projectName);
-        })
+        });
       }
     });
     console.log(this.mainProjectNames);
 
   }
-  logout(){
+  logout() {
     sessionStorage.clear();
-    console.log("erase session",sessionStorage.getItem('email'));
+    console.log('erase session', sessionStorage.getItem('email'));
     this.router.navigate(['/login']);
   }
-  create(){
-    if (this.projectName === '' || this.projectName === null || this.division === '' || this.division == null  || this.lotID === '' || this.lotID == null || this.landUser === '' || this.landUser == null) {
+  create() {
+    if (this.projectName === '' ||
+    this.projectName === null ||
+    this.division === '' ||
+    this.division == null  ||
+    this.lotID === '' ||
+    this.lotID == null ||
+    this.landUser === '' ||
+    this.landUser == null ||
+    this.preliminaryPlan === null ||
+    this.preliminaryPlan === ''
+    ) {
       this.flashMessageServie.show('Please Enter Project Details', {cssClass: 'alert-danger', timeout: 3000});
-      
+
       this.router.navigate(['/createproject']);
-    }
-    else{
+    } else {
       console.log(this.mainProjectName);
-      this.dataService.createProject(this.projectName,this.division,this.landUser,this.lotID,this.mainProjectName).subscribe((data:any)=>{
-        if(data.success==true){
-          console.log(data)
+      this.dataService.createProject(this.projectName, this.division, this.landUser, this.lotID, this.mainProjectName, this.preliminaryPlan)
+      .subscribe((data: any) => {
+        if (data.success === true) {
+          console.log(data);
           this.flashMessageServie.show('Project Created Successfully!', {cssClass: 'alert-success', timeout: 3000});
           this.router.navigate(['/search']);
-        }
-        else{
+        } else {
           this.flashMessageServie.show(data.msg, {cssClass: 'alert-danger', timeout: 3000});
         }
-        
-      },(error: any) => {
+
+      }, (error: any) => {
         this.flashMessageServie.show('Wrong project details!', {cssClass: 'alert-danger', timeout: 1000});
         this.router.navigate(['/createproject']);
     });
@@ -81,5 +91,5 @@ export class CreateProjectComponent implements OnInit {
 
   }
 
-  
+
 }
